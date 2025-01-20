@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko-KR">
   <head>
     <meta charset="UTF-8" />
@@ -16,5 +16,21 @@
       이 사이트를 이용하려면 사용중인 웹 브라우저에서 JS를 활성화해야 합니다.
     </noscript>
     <div id="root"></div>
+
+    <!-- HTML Form (web standard) -->
+    <section style="margin-inline: 48px">
+      <h2><abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤</h2>
+      <form action="" method="get">
+        <div style="margin-block-end: 8px">
+          <label for="usernameInput">이름</label>
+          <input type="text" name="username" id="usernameInput" />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="emailInput">이메일</label>
+          <input type="email" name="email" id="emailInput" />
+        </div>
+        <button type="submit">제출</button>
+      </form>
+    </section>
   </body>
 </html>

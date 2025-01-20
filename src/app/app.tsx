@@ -1,12 +1,7 @@
 import './app.css';
-import Playground from './../playground';
 
 function App() {
-  return (
-    <div className="app">
-      <Playground />
-    </div>
-  );
+  return <div className="app"></div>;
 }
 
 export default App;
