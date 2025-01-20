@@ -20,14 +20,18 @@
     <!-- HTML Form (web standard) -->
     <section style="margin-inline: 48px">
       <h2><abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤</h2>
-      <form action="" method="get">
+      <form action="http://localhost:4000/api/hello" method="get">
         <div style="margin-block-end: 8px">
           <label for="usernameInput">이름</label>
           <input type="text" name="username" id="usernameInput" />
         </div>
         <div style="margin-block-end: 8px">
-          <label for="emailInput">이메일</label>
-          <input type="email" name="email" id="emailInput" />
+          <label for="useremailInput">이메일</label>
+          <input type="email" name="useremail" id="useremailInput" />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userpasswordInput">비밀번호</label>
+          <input type="password" name="userpassword" id="userpasswordInput" />
         </div>
         <button type="submit">제출</button>
       </form>
