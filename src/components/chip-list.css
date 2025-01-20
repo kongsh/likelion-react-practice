@@ -1,0 +1,23 @@
+@layer components {
+  .chip-list {
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-block: 0;
+    padding-inline-start: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 4px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    li {
+      flex-shrink: 0;
+    }
+  }
+}

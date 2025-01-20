@@ -1,8 +1,12 @@
-import { ReactElement } from 'react';
 import './app.css';
+import Playground from './../playground';
 
-function App(props: { children?: ReactElement }) {
-  return <div className="app">{props?.children}</div>;
+function App() {
+  return (
+    <div className="app">
+      <Playground />
+    </div>
+  );
 }
 
 export default App;
