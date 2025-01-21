@@ -1,0 +1,26 @@
+[
+  {
+    "name": "한제이",
+    "email": "hanj2@kakao.com",
+    "password": "$2b$10$K7PvRTiwF3xH5h9R.2IZoOrM54q5fkxlHJiQuTSvRz5vm7O99lxrO",
+    "id": "591c1b02-c690-4348-8dcc-a0c1fb693edf"
+  },
+  {
+    "name": "지훈",
+    "email": "yamoo9@naver.com",
+    "password": "$2b$10$6dHtQ34rZC5yWbm9YQOiU.hI9Ek0MrUzlrt0cD9XlSVVHHvUvQbLi",
+    "id": "17c7075e-0cb6-42e8-9d02-156aab3a4935"
+  },
+  {
+    "id": "8cd83989-e4ca-47bd-a3e3-66beef745b30",
+    "name": "아무이름",
+    "email": "yamoo@naver.com",
+    "password": "$2b$09$n2sa4KL0MjaKQhbp0n6wfeWQKYzYYzRtmk2SCu5R749jH3sULy4rG"
+  },
+  {
+    "name": "야호",
+    "email": "abc@koko.kr",
+    "password": "$2b$09$qmI5A2wyb5Kh0tY4wVZv9eQW5kCMpQFNwCYqISbPM1P.YlYA61jUy",
+    "id": "3c4a0dbc-da6f-4406-8488-22eff9dc6235"
+  }
+]
