@@ -19,8 +19,11 @@
 
     <!-- HTML Form (web standard) -->
     <section style="margin-inline: 48px">
-      <h2><abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤</h2>
-      <form action="http://localhost:4000/api/hello" method="get">
+      <h2>
+        <abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤 (GET
+        메서드)
+      </h2>
+      <form action="http://localhost:4000/api/hello">
         <div style="margin-block-end: 8px">
           <label for="usernameInput">이름</label>
           <input type="text" name="username" id="usernameInput" />
@@ -29,11 +32,35 @@
           <label for="useremailInput">이메일</label>
           <input type="email" name="useremail" id="useremailInput" />
         </div>
-        <div style="margin-block-end: 8px">
+        <!-- <div style="margin-block-end: 8px">
           <label for="userpasswordInput">비밀번호</label>
           <input type="password" name="userpassword" id="userpasswordInput" />
-        </div>
+        </div> -->
         <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+      </form>
+    </section>
+
+    <hr style="margin-block-start: 36px" />
+
+    <!-- HTML Form (web standard) -->
+    <section style="margin-inline: 48px">
+      <h2>회원 가입 폼</h2>
+      <form action="http://localhost:4000/api/signup" method="post">
+        <div style="margin-block-end: 8px">
+          <label for="usernameSignUp">이름</label>
+          <input type="text" name="username" id="usernameSignUp" />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="useremailSignUp">이메일</label>
+          <input type="email" name="useremail" id="useremailSignUp" />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userpasswordSignUp">비밀번호</label>
+          <input type="password" name="userpassword" id="userpasswordSignUp" />
+        </div>
+        <button type="submit">회원 가입</button>
+        <button type="reset">초기화</button>
       </form>
     </section>
   </body>
