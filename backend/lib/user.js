@@ -27,6 +27,7 @@ export async function createUser(userInfo) {
     name: userInfo.name,
     email: userInfo.email,
     password: hashedPassword,
+    profileImage: userInfo.profileImage,
     id: crypto.randomUUID(),
   });
 
@@ -35,4 +36,8 @@ export async function createUser(userInfo) {
   return userInfo;
 }
 
-export async function isRegisteredUser() {}
+export async function isRegisteredUser(email, password) {
+  const user = await findUserByEmail(email);
+  if (!user) return null;
+  return await bcrypt.compare(password, user.password);
+}
