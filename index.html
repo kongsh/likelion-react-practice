@@ -17,84 +17,94 @@
     </noscript>
     <div id="root"></div>
 
-    <!-- HTML Form (web standard) -->
-    <section style="margin-inline: 48px">
-      <h2>
-        헬로~
-        <abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤 (GET
-        메서드)
-      </h2>
-      <form action="http://localhost:4000/api/hello">
-        <div style="margin-block-end: 8px">
-          <label for="usernameInput">이름</label>
-          <input type="text" name="username" id="usernameInput" />
-        </div>
-        <div style="margin-block-end: 8px">
-          <label for="useremailInput">이메일</label>
-          <input type="email" name="useremail" id="useremailInput" />
-        </div>
-        <!-- <div style="margin-block-end: 8px">
-          <label for="userpasswordInput">비밀번호</label>
-          <input type="password" name="userpassword" id="userpasswordInput" />
-        </div> -->
-        <button type="submit">제출</button>
-        <button type="reset">초기화</button>
-      </form>
-    </section>
+    <div class="html-form-demo" hidden>
+      <!-- HTML Form (web standard) -->
+      <section style="margin-inline: 48px">
+        <h2>
+          헬로~
+          <abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤 (GET
+          메서드)
+        </h2>
+        <form action="http://localhost:4000/api/hello">
+          <div style="margin-block-end: 8px">
+            <label for="usernameInput">이름</label>
+            <input type="text" name="username" id="usernameInput" />
+          </div>
+          <div style="margin-block-end: 8px">
+            <label for="useremailInput">이메일</label>
+            <input type="email" name="useremail" id="useremailInput" />
+          </div>
+          <!-- <div style="margin-block-end: 8px">
+            <label for="userpasswordInput">비밀번호</label>
+            <input type="password" name="userpassword" id="userpasswordInput" />
+          </div> -->
+          <button type="submit">제출</button>
+          <button type="reset">초기화</button>
+        </form>
+      </section>
 
-    <hr style="margin-block-start: 36px" />
+      <hr style="margin-block-start: 36px" />
 
-    <!-- HTML Form (web standard) -->
-    <section style="margin-inline: 48px">
-      <h2>회원 가입 폼 (POST 메서드)</h2>
-      <form
-        action="http://localhost:4000/api/signup"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <div style="margin-block-end: 8px">
-          <label for="usernameSignUp">이름</label>
-          <input type="text" name="username" id="usernameSignUp" />
-        </div>
-        <div style="margin-block-end: 8px">
-          <label for="useremailSignUp">이메일</label>
-          <input type="email" name="useremail" id="useremailSignUp" />
-        </div>
-        <div style="margin-block-end: 8px">
-          <label for="userpasswordSignUp">비밀번호</label>
-          <input type="password" name="userpassword" id="userpasswordSignUp" />
-        </div>
-        <div style="margin-block-end: 8px">
-          <label for="userprofileSignUp">프로필 이미지</label>
-          <input
-            type="file"
-            name="userprofile"
-            id="userprofileSignUp"
-            accept=".jpg,.jpeg,.png,.svg,.webp"
-          />
-        </div>
-        <button type="submit">회원 가입</button>
-        <button type="reset">초기화</button>
-      </form>
-    </section>
+      <!-- HTML Form (web standard) -->
+      <section style="margin-inline: 48px">
+        <h2>회원 가입 폼 (POST 메서드)</h2>
+        <form
+          action="http://localhost:4000/api/signup"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div style="margin-block-end: 8px">
+            <label for="usernameSignUp">이름</label>
+            <input type="text" name="username" id="usernameSignUp" />
+          </div>
+          <div style="margin-block-end: 8px">
+            <label for="useremailSignUp">이메일</label>
+            <input type="email" name="useremail" id="useremailSignUp" />
+          </div>
+          <div style="margin-block-end: 8px">
+            <label for="userpasswordSignUp">비밀번호</label>
+            <input
+              type="password"
+              name="userpassword"
+              id="userpasswordSignUp"
+            />
+          </div>
+          <div style="margin-block-end: 8px">
+            <label for="userprofileSignUp">프로필 이미지</label>
+            <input
+              type="file"
+              name="userprofile"
+              id="userprofileSignUp"
+              accept=".jpg,.jpeg,.png,.svg,.webp"
+            />
+          </div>
+          <button type="submit">회원 가입</button>
+          <button type="reset">초기화</button>
+        </form>
+      </section>
 
-    <hr style="margin-block-start: 36px" />
+      <hr style="margin-block-start: 36px" />
 
-    <!-- HTML Form (web standard) -->
-    <section style="margin-inline: 48px">
-      <h2>로그인 폼 (POST 메서드)</h2>
-      <form action="http://localhost:4000/api/signin" method="post">
-        <div style="margin-block-end: 8px">
-          <label for="useremailSignIn">이메일</label>
-          <input type="email" name="useremail" id="useremailSignIn" />
-        </div>
-        <div style="margin-block-end: 8px">
-          <label for="userpasswordSignIn">비밀번호</label>
-          <input type="password" name="userpassword" id="userpasswordSignIn" />
-        </div>
-        <button type="submit">로그인</button>
-        <button type="reset">초기화</button>
-      </form>
-    </section>
+      <!-- HTML Form (web standard) -->
+      <section style="margin-inline: 48px">
+        <h2>로그인 폼 (POST 메서드)</h2>
+        <form action="http://localhost:4000/api/signin" method="post">
+          <div style="margin-block-end: 8px">
+            <label for="useremailSignIn">이메일</label>
+            <input type="email" name="useremail" id="useremailSignIn" />
+          </div>
+          <div style="margin-block-end: 8px">
+            <label for="userpasswordSignIn">비밀번호</label>
+            <input
+              type="password"
+              name="userpassword"
+              id="userpasswordSignIn"
+            />
+          </div>
+          <button type="submit">로그인</button>
+          <button type="reset">초기화</button>
+        </form>
+      </section>
+    </div>
   </body>
 </html>
