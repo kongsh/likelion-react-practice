@@ -1,6 +1,9 @@
-import FormInput from './../components/form-input.tsx';
+import { useState } from 'react';
+import FormInput from '@/components/form-input.tsx';
 
 function ReactForm() {
+  const [age, setAge] = useState(22);
+
   return (
     <div className="ReactForm">
       <h2>React 폼(form)</h2>
@@ -11,7 +14,16 @@ function ReactForm() {
           label="비밀번호"
           placeholder="영문, 숫자 조합 4자리 이상"
         />
-        <FormInput type="number" label="나이" defaultValue={20} />
+        <FormInput
+          type="number"
+          label="나이"
+          value={age}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const { value } = e.target;
+            const nextAgeValue = Number(value);
+            setAge(nextAgeValue);
+          }}
+        />
         <FormInput type="color" label="색상" />
         <FormInput type="range" label="시청 허용 나이" />
         <button type="submit">제출</button>
