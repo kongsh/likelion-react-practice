@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FormInput from '@/components/form-input.tsx';
+import FormTextarea from '@/components/form-textarea.tsx';
 
 const formStyles = {
   display: 'flex',
@@ -28,22 +29,55 @@ function ReactForm() {
     setContents(e.target.value);
   };
 
+  // radio state (checked)
+  const [isMale, setIsMale] = useState<boolean>(true);
+  const handleToggleGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isMale = e.target.value === 'male';
+    setIsMale(isMale);
+  };
+
+  // checkbox state (checked)
+
   return (
     <div className="ReactForm">
       <h2>React 폼(form)</h2>
       <form style={formStyles}>
-        <div style={{ display: 'flex', flexFlow: 'column', gap: 4 }}>
-          <label htmlFor="greeting-message">인사말</label>
-          <textarea
-            id="greeting-message"
-            cols={60}
-            rows={4}
-            defaultValue={'인사말 작성'}
-            value={contents}
-            onChange={handleUpdateContents}
-            style={{ resize: 'vertical' }}
-          ></textarea>
-        </div>
+        <fieldset>
+          <legend>성별</legend>
+          <FormInput
+            label="남성"
+            name="usergender"
+            value="male"
+            type="radio"
+            checked={isMale}
+            onChange={handleToggleGender}
+          />
+          <FormInput
+            label="여성"
+            name="usergender"
+            value="female"
+            type="radio"
+            checked={!isMale}
+            onChange={handleToggleGender}
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend>기타 사항</legend>
+          <FormInput label="성인" name="isAdult" value="성인" type="checkbox" />
+          <FormInput
+            label="자가 보유"
+            name="hasHouse"
+            type="checkbox"
+            value="자가 보유"
+          />
+          <FormInput
+            label="해외 거주"
+            name="liveForeign"
+            type="checkbox"
+            value="해외 거주"
+          />
+        </fieldset>
 
         <FormInput type="text" label="이름" placeholder="박수무당" />
         <FormInput
@@ -111,38 +145,17 @@ function ReactForm() {
           ))}
         </div>
 
-        <fieldset>
-          <legend>성별</legend>
-          <FormInput
-            label="남성"
-            name="usergender"
-            value="남성"
-            type="radio"
-            defaultChecked
-          />
-          <FormInput label="여성" name="usergender" value="여성" type="radio" />
-        </fieldset>
-
-        <fieldset>
-          <legend>기타 사항</legend>
-          <FormInput label="성인" name="isAdult" value="성인" type="checkbox" />
-          <FormInput
-            label="자가 보유"
-            name="hasHouse"
-            type="checkbox"
-            value="자가 보유"
-          />
-          <FormInput
-            label="해외 거주"
-            name="liveForeign"
-            type="checkbox"
-            value="해외 거주"
-          />
-        </fieldset>
-
         <FormInput type="date" label="여행날짜" />
 
         <FormInput type="datetime-local" label="비행기 출국 시간" />
+
+        <FormTextarea
+          label="인삿말"
+          name="contents"
+          value={contents}
+          onChange={handleUpdateContents}
+          resize="vertical"
+        />
 
         <button type="submit">제출</button>
         <button type="reset">초기화</button>
