@@ -11,18 +11,11 @@ function FormRadioOrCheckbox({
 }: FormRadioProps) {
   const inputId = useId();
 
-  switch (type) {
-    case 'radio':
-    case 'checkbox':
-      return (
-        <div className="formRadioControl">
-          <input id={inputId} type={type} {...restProps} />
-          <label htmlFor={inputId}>{label}</label>
-        </div>
-      );
-    default:
-      return null;
-  }
+  return (
+    <div className="formRadioControl">
+      <input id={inputId} type={type} {...restProps} />
+      <label htmlFor={inputId}>{label}</label>
+    </div>
+  );
 }
-
 export default FormRadioOrCheckbox;

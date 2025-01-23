@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import FormInput from '@/components/form-input.tsx';
-import FormRadioOrCheckbox from '@/components/form-radio-or-checkbox.tsx';
 
 const formStyles = {
   display: 'flex',
@@ -44,6 +43,7 @@ function ReactForm() {
             setColor(value);
           }}
         />
+
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <FormInput
             type="range"
@@ -65,30 +65,26 @@ function ReactForm() {
 
         <fieldset>
           <legend>성별</legend>
-          <FormRadioOrCheckbox
+          <FormInput
             label="남성"
             name="usergender"
             value="남성"
+            type="radio"
             defaultChecked
           />
-          <FormRadioOrCheckbox label="여성" name="usergender" value="여성" />
+          <FormInput label="여성" name="usergender" value="여성" type="radio" />
         </fieldset>
 
         <fieldset>
           <legend>기타 사항</legend>
-          <FormRadioOrCheckbox
-            label="성인"
-            name="isAdult"
-            value="성인"
-            type="checkbox"
-          />
-          <FormRadioOrCheckbox
+          <FormInput label="성인" name="isAdult" value="성인" type="checkbox" />
+          <FormInput
             label="자가 보유"
             name="hasHouse"
             type="checkbox"
             value="자가 보유"
           />
-          <FormRadioOrCheckbox
+          <FormInput
             label="해외 거주"
             name="liveForeign"
             type="checkbox"
@@ -96,7 +92,12 @@ function ReactForm() {
           />
         </fieldset>
 
+        <FormInput type="date" label="여행날짜" />
+
+        <FormInput type="datetime-local" label="비행기 출국 시간" />
+
         <button type="submit">제출</button>
+        <button type="reset">초기화</button>
       </form>
     </div>
   );
