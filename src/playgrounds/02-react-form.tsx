@@ -13,6 +13,7 @@ function ReactForm() {
   const [color, setColor] = useState('#0000de');
   const [limitAge, setLimitAge] = useState(40);
   const [profileImages, setProfileImages] = useState<File[]>([]);
+  const [contents, setContents] = useState('입력하세요');
 
   const photoURLs = profileImages.map((img) => URL.createObjectURL(img));
 
@@ -23,10 +24,27 @@ function ReactForm() {
     }
   };
 
+  const handleUpdateContents = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContents(e.target.value);
+  };
+
   return (
     <div className="ReactForm">
       <h2>React 폼(form)</h2>
       <form style={formStyles}>
+        <div style={{ display: 'flex', flexFlow: 'column', gap: 4 }}>
+          <label htmlFor="greeting-message">인사말</label>
+          <textarea
+            id="greeting-message"
+            cols={60}
+            rows={4}
+            defaultValue={'인사말 작성'}
+            value={contents}
+            onChange={handleUpdateContents}
+            style={{ resize: 'vertical' }}
+          ></textarea>
+        </div>
+
         <FormInput type="text" label="이름" placeholder="박수무당" />
         <FormInput
           type="password"
