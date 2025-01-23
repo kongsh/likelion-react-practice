@@ -12,6 +12,16 @@ function ReactForm() {
   const [age, setAge] = useState(22);
   const [color, setColor] = useState('#0000de');
   const [limitAge, setLimitAge] = useState(40);
+  const [profileImages, setProfileImages] = useState<File[]>([]);
+
+  const photoURLs = profileImages.map((img) => URL.createObjectURL(img));
+
+  const handleUploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files && files.length > 0) {
+      setProfileImages(Object.values(files));
+    }
+  };
 
   return (
     <div className="ReactForm">
@@ -61,7 +71,27 @@ function ReactForm() {
           <output>{limitAge}</output>
         </div>
 
-        <FormInput label="프로필" type="file" accept="image/*" multiple />
+        <div
+          style={{ border: '0.5px solid rgba(0 0 0 / 30%)', padding: '12px' }}
+        >
+          <FormInput
+            label="프로필"
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleUploadProfile}
+          />
+          {profileImages?.map(({ name }, index) => (
+            <img
+              key={name}
+              style={{ marginBlockStart: 8, marginInline: 8 }}
+              src={photoURLs.at(index)}
+              alt="업로드 할 프로필"
+              width={100}
+              height={100}
+            />
+          ))}
+        </div>
 
         <fieldset>
           <legend>성별</legend>
