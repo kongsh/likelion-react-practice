@@ -37,6 +37,30 @@ function ReactForm() {
   };
 
   // checkbox state (checked)
+  const [checkBoxes, setCheckBoxes] = useState([
+    { label: '성인', name: 'isAdult', value: 'isAdult', checked: false },
+    { label: '집 보유', name: 'hasHouse', value: 'hasHouse', checked: false },
+    {
+      label: '해외 거주',
+      name: 'liveForeign',
+      value: 'liveForeign',
+      checked: false,
+    },
+  ]);
+
+  const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = e.target;
+
+    const updatedCheckBoxes = checkBoxes.map((item) => {
+      if (item.value === value) {
+        item.checked = checked;
+      }
+
+      return item;
+    });
+
+    setCheckBoxes(updatedCheckBoxes);
+  };
 
   return (
     <div className="ReactForm">
@@ -64,19 +88,15 @@ function ReactForm() {
 
         <fieldset>
           <legend>기타 사항</legend>
-          <FormInput label="성인" name="isAdult" value="성인" type="checkbox" />
-          <FormInput
-            label="자가 보유"
-            name="hasHouse"
-            type="checkbox"
-            value="자가 보유"
-          />
-          <FormInput
-            label="해외 거주"
-            name="liveForeign"
-            type="checkbox"
-            value="해외 거주"
-          />
+          {checkBoxes.map(({ value, ...rest }) => (
+            <FormInput
+              key={value}
+              value={value}
+              type="checkbox"
+              onChange={handleCheckBoxChange}
+              {...rest}
+            />
+          ))}
         </fieldset>
 
         <FormInput type="text" label="이름" placeholder="박수무당" />
