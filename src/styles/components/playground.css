@@ -1,0 +1,22 @@
+.playground {
+  padding: 48px;
+
+  h1 {
+    margin-block: 0 12px;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(0 0 0 / 74%);
+  }
+
+  .comboBox {
+    display: flex;
+    gap: 4px;
+
+    select {
+      appearance: none;
+      padding: 4px 6px;
+      border-radius: 8px;
+      border: 2px solid rgba(0 0 0 / 74%);
+    }
+  }
+}

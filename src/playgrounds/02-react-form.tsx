@@ -69,10 +69,69 @@ function ReactForm() {
     setCheckBoxes(updatedCheckBoxes);
   };
 
+  const [spices, setSpices] = useState<string[]>(['lavender']);
+
+  const [progress, setProgress] = useState(10);
+
   return (
     <div className="ReactForm">
       <h2>React 폼(form)</h2>
-      <form style={formStyles}>
+
+      <div className="comboBox">
+        <label htmlFor="spice-pick" className="sr-only">
+          향신료 선택
+        </label>
+        <select
+          form="ReactForm"
+          name="spice-pick"
+          id="spice-pick"
+          value={spices}
+          onChange={(e) => {
+            const options = [...e.target.selectedOptions];
+            const values = options.map((option) => option.value);
+            setSpices(values);
+          }}
+          multiple
+        >
+          <option value="lemongrass">레몬그라스</option>
+          <option value="rosmari">로즈마리</option>
+          <option value="lavender">라벤더</option>
+        </select>
+      </div>
+
+      <form id="ReactForm" style={formStyles}>
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column',
+            gap: 8,
+            marginBlock: 20,
+          }}
+        >
+          <label htmlFor="progress-bar">진행률</label>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <progress id="progress-bar" value={progress} max={100}>
+              15%
+            </progress>
+            <output>{progress}%</output>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <FormInput
+            type="range"
+            label="진행률 업데이트"
+            min={0}
+            max={100}
+            step={5}
+            value={progress}
+            onChange={(e) => {
+              const newValue = Number(e.target.value);
+              setProgress(newValue);
+            }}
+          />
+        </div>
+
         <fieldset>
           <legend>성별</legend>
           <FormInput
