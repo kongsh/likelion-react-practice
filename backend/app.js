@@ -69,7 +69,10 @@ app.post('/api/signup', async (req, res) => {
       //   .send(`<p>${newUser.name}님! 회원가입에 성공했습니다.</p>`);
       res.status(201).json(user);
     } else {
-      res.status(400).send(`<p>${username}님은 이미 가입된 회원입니다.</p>`);
+      res.status(400).json({
+        name: '등록된 사용자 확인',
+        message: `${username}님은 ${useremail} 이메일 주소로 회원 가입을 이미 하셨습니다. 😥`,
+      });
     }
   } catch (error) {
     res.status(500).send('새 사용자 생성에 문제가 발생했습니다.');
