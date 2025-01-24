@@ -9,35 +9,11 @@ const formStyles = {
   gap: '8px',
 };
 
-function ReactForm() {
-  const [age, setAge] = useState(22);
-  const [color, setColor] = useState('#0000de');
-  const [limitAge, setLimitAge] = useState(40);
-  const [profileImages, setProfileImages] = useState<File[]>([]);
-  const [contents, setContents] = useState('입력하세요');
-
-  const photoURLs = profileImages.map((img) => URL.createObjectURL(img));
-
-  const handleUploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    if (files && files.length > 0) {
-      setProfileImages(Object.values(files));
-    }
-  };
-
-  const handleUpdateContents = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(e.target.value);
-  };
-
-  // radio state (checked)
-  const [isMale, setIsMale] = useState<boolean>(true);
-  const handleToggleGender = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isMale = e.target.value === 'male';
-    setIsMale(isMale);
-  };
-
-  // checkbox state (checked)
-  const [checkBoxes, setCheckBoxes] = useState([
+const initialFormData = {
+  limitAge: 40,
+  profileImage: [],
+  isMale: true,
+  checkBoxes: [
     { label: '성인', name: 'isAdult', value: 'isAdult', checked: false },
     { label: '집 보유', name: 'hasHouse', value: 'hasHouse', checked: false },
     {
@@ -46,8 +22,39 @@ function ReactForm() {
       value: 'liveForeign',
       checked: false,
     },
-  ]);
+  ],
+};
 
+function ReactForm() {
+  const handleResetForm = () => {
+    setLimitAge(initialFormData.limitAge);
+    setProfileImages(initialFormData.profileImage);
+    setIsMale(initialFormData.isMale);
+    setCheckBoxes(initialFormData.checkBoxes);
+  };
+
+  const [limitAge, setLimitAge] = useState(initialFormData.limitAge);
+
+  const [profileImages, setProfileImages] = useState<File[]>(
+    initialFormData.profileImage
+  );
+  const handleUploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files && files.length > 0) {
+      setProfileImages(Object.values(files));
+    }
+  };
+  const photoURLs = profileImages.map((img) => URL.createObjectURL(img));
+
+  // radio state (checked)
+  const [isMale, setIsMale] = useState<boolean>(initialFormData.isMale);
+  const handleToggleGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isMale = e.target.value === 'male';
+    setIsMale(isMale);
+  };
+
+  // checkbox state (checked)
+  const [checkBoxes, setCheckBoxes] = useState(initialFormData.checkBoxes);
   const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
 
@@ -106,25 +113,8 @@ function ReactForm() {
           placeholder="영문, 숫자 조합 4자리 이상"
         />
         <FormInput type="email" label="이메일" placeholder="user@company.io" />
-        <FormInput
-          type="number"
-          label="나이"
-          value={age}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const { value } = e.target;
-            const nextAgeValue = Number(value);
-            setAge(nextAgeValue);
-          }}
-        />
-        <FormInput
-          type="color"
-          label="색상"
-          value={color}
-          onChange={(e) => {
-            const { value } = e.target;
-            setColor(value);
-          }}
-        />
+        <FormInput type="number" label="나이" defaultValue={24} />
+        <FormInput type="color" label="색상" defaultValue="#ffffff" />
 
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <FormInput
@@ -172,13 +162,16 @@ function ReactForm() {
         <FormTextarea
           label="인삿말"
           name="contents"
-          value={contents}
-          onChange={handleUpdateContents}
+          placeholder="안녕하세요!!"
           resize="vertical"
         />
 
-        <button type="submit">제출</button>
-        <button type="reset">초기화</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button type="submit">제출</button>
+          <button type="reset" onClick={handleResetForm}>
+            초기화
+          </button>
+        </div>
       </form>
     </div>
   );
