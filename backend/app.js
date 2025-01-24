@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { createUser, findUserByEmail, isRegisteredUser } from './lib/user.js';
 import { resolve } from 'node:path';
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(resolve('./public')));
 app.use(fileUpload());
+app.use(cors());
 
 app.post('/api/signin', async (req, res) => {
   const { useremail, userpassword } = req.body;
