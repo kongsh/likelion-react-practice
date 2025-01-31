@@ -18,7 +18,7 @@ function Playground() {
   const isSignInView = uiView.includes('signin');
 
   return (
-    <div className="playground">
+    <div className="playground" style={{ background: '#d7dadf' }}>
       <h1>플레이그라운드</h1>
       <Nav />
       {isSignInView ? <HomeworkSignIn /> : <HomeworkSignUp />}
