@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'node:url';
+import tailwindcss from '@tailwindcss/vite';
 
 const viteConfig = defineConfig((env) => {
   const isDevMode = env.mode.includes('development');
@@ -10,6 +11,7 @@ const viteConfig = defineConfig((env) => {
       react({
         jsxRuntime: 'automatic',
       }),
+      tailwindcss(),
     ],
     server: {
       host: 'localhost',

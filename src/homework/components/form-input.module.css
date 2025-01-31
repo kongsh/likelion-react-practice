@@ -13,6 +13,30 @@
     line-height: 1;
   }
 
+  .group {
+    display: flex;
+    inline-size: 100%;
+
+    button {
+      --size: 24px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      inline-size: var(--size);
+      block-size: var(--size);
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      line-height: 1;
+      border-radius: 6px;
+
+      &:hover:not(:disabled, &[aria-disabled='true']) {
+        background-color: rgba(0, 0, 0, 10%);
+      }
+    }
+  }
+
   input {
     display: block;
     inline-size: 100%;
