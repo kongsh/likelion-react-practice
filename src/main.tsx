@@ -6,7 +6,9 @@ import App from './app/app';
 const root = document.getElementById('root');
 
 if (root) {
-  createRoot(root).render(
+  createRoot(root, {
+    identifierPrefix: 'euid-',
+  }).render(
     <StrictMode>
       <App></App>
     </StrictMode>

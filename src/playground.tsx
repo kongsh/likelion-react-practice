@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Nav from './homework/nav';
-import HomeworkSignIn from './homework/sign-in';
-import HomeworkSignUp from './homework/sign-up';
+import Nav from './homework/components/nav';
+import HomeworkSignIn from './homework/pages/sign-in';
+import HomeworkSignUp from './homework/pages/sign-up';
 
 type UIView = 'signin' | 'signup';
 

@@ -1,0 +1,32 @@
+@layer components {
+  nav {
+    --spacing: 4px;
+
+    display: flex;
+    border-top: 0.5px solid currentColor;
+    border-bottom: 0.5px solid currentColor;
+    padding: calc(var(--spacing) * 3);
+    margin-block: calc(var(--spacing) * 3);
+
+    gap: calc(var(--spacing) * 3);
+
+    a {
+      color: #464444;
+
+      &:hover:not(:focus) {
+        color: #9a7645;
+      }
+    }
+  }
+
+  .sr-only {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
