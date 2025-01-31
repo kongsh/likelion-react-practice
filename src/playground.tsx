@@ -1,41 +1,27 @@
 import { useState } from 'react';
-import SignUpForm from './playgrounds/03-signup-form';
-import SignInForm from './playgrounds/04-signin-form';
+import Nav from './homework/nav';
+import HomeworkSignIn from './homework/sign-in';
+import HomeworkSignUp from './homework/sign-up';
 
-type View = 'signIn' | 'signUp';
+type UIView = 'signin' | 'signup';
+
+const getUIView = (): UIView => {
+  const searchParams = new URLSearchParams(location.search);
+  const view = searchParams.get('view') ?? 'signin';
+
+  return view as UIView;
+};
 
 function Playground() {
-  // 상태 변수
-  const [view, setView] = useState<View>('signIn');
+  const [uiView] = useState<UIView>(getUIView);
 
-  // 파생된 상태 변수
-  const isSignInView = view.includes('signIn');
-
-  // [핸들러] 상태 업데이트 함수
-  const handleChangeView = () => {
-    // const nextView = isSignInView ? 'signUp' : 'signIn';
-
-    // 상태관리 API
-    // set(nextState)
-    setView(isSignInView ? 'signUp' : 'signIn');
-
-    // set((prevState) => nextState)
-    setView((prevView) => {
-      const nextView = prevView.includes('signIn') ? 'signUp' : 'signIn';
-      return nextView;
-    });
-  };
+  const isSignInView = uiView.includes('signin');
 
   return (
     <div className="playground">
       <h1>플레이그라운드</h1>
-      {isSignInView ? <SignInForm /> : <SignUpForm />}
-
-      <hr />
-
-      <button type="button" onClick={handleChangeView}>
-        {isSignInView ? '회원가입' : '로그인'} 페이지로 이동
-      </button>
+      <Nav />
+      {isSignInView ? <HomeworkSignIn /> : <HomeworkSignUp />}
     </div>
   );
 }
