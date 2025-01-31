@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import SignUpForm from './playgrounds/03-signup-form';
-import SignInForm from './playgrounds/04-signin-form';
+import SignUpForm from './03-signup-form';
+import SignInForm from './04-signin-form';
 
 type View = 'signIn' | 'signUp';
 
@@ -17,7 +17,7 @@ function Playground() {
 
     // 상태관리 API
     // set(nextState)
-    setView(isSignInView ? 'signUp' : 'signIn');
+    // setView(isSignInView ? 'signUp' : 'signIn');
 
     // set((prevState) => nextState)
     setView((prevView) => {
