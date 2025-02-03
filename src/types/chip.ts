@@ -1,6 +1,6 @@
-export interface Chip {
+export interface ChipType {
   id: number;
   label: string;
 }
 
-export type ChipList = Chip[];
+export type ChipListType = ChipType[];

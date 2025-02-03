@@ -1,6 +1,2 @@
 @import './tailwind.css';
-
-@import './common/normalize.css' layer(base);
-@import './common/base.css' layer(base);
-
 @import './components/playground.css' layer(components);

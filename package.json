@@ -14,8 +14,8 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --cache src",
-    "format": "prettier --cache src",
+    "lint": "eslint --cache 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write --cache 'src/**/*.{ts,tsx}'",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -47,7 +47,7 @@
     "vite": "6.0.7"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "19",
+    "react-dom": "19"
   }
 }

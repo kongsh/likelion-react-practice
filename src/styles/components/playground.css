@@ -1,4 +1,4 @@
-.playground {
+.Playground {
   padding: 48px;
 
   h1 {
@@ -8,15 +8,16 @@
     color: rgba(0 0 0 / 74%);
   }
 
-  .comboBox {
+  .ComboBox {
     display: flex;
     gap: 4px;
 
     select {
       appearance: none;
+      border: 2px solid rgba(0 0 0 / 30%);
       padding: 4px 6px;
       border-radius: 8px;
-      border: 2px solid rgba(0 0 0 / 74%);
+      font-size: 14px;
     }
   }
 }
