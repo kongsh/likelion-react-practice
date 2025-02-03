@@ -101,7 +101,9 @@ function HomeworkSignInForm() {
           onChange={handleChange}
           hasError={error.userpassword}
         />
-        <ActionButton aria-disabled={!isAllInputted}>로그인</ActionButton>
+        <ActionButton className="bg-violet-700" aria-disabled={!isAllInputted}>
+          로그인
+        </ActionButton>
       </form>
     </section>
   );

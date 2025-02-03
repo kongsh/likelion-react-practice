@@ -1,3 +1,5 @@
+import clsx from 'clsx/lite';
+
 type ToggleButtonProps = React.ComponentProps<'button'> & {
   label: string;
   isOff?: boolean;
@@ -13,11 +15,18 @@ function ToggleButton({
   className = '',
   ...buttonProps
 }: ToggleButtonProps) {
-  const buttonStyles = `
-    flex justify-center items-center 
-    size-8 rounded-md border-0 p-0 bg-transparent
-    leading-none hover:not-[:disabled,[aria-disabled=true]]:bg-black/10
-  ${className}`;
+  // const buttonStyles = `
+  //   flex justify-center items-center
+  //   size-8 rounded-md border-0 p-0 bg-transparent
+  //   leading-none hover:not-[:disabled,[aria-disabled=true]]:bg-black/10
+  // ${className}`;
+
+  const buttonStyles = clsx(
+    `flex justify-center items-center 
+     size-8 rounded-md border-0 p-0 bg-transparent
+     leading-none hover:not-[:disabled,[aria-disabled=true]]:bg-black/10`,
+    className
+  );
 
   return (
     <button className={buttonStyles} {...buttonProps}>

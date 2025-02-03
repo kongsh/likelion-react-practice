@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
 const viteConfig = defineConfig((env) => {
-  const idDevMode = env.mode.includes('development');
+  const isDevMode = env.mode.includes('development');
 
   return {
     plugins: [
@@ -25,7 +25,7 @@ const viteConfig = defineConfig((env) => {
       devSourcemap: true,
       modules: {
         localsConvention: 'camelCase',
-        generateScopedName: idDevMode
+        generateScopedName: isDevMode
           ? '_[local]_[hash:base64:3]'
           : '_[hash:base64:6]',
       },
