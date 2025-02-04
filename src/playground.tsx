@@ -4,9 +4,10 @@ import Nav from '@/homework/components/nav';
 import HomeworkSignInForm from '@/homework/pages/sign-in';
 import HomeworkSignUpForm from '@/homework/pages/sign-up';
 import StateManagement from '@/homework/pages/state-management';
-import { getUIView, type UIView } from '@/homework/lib/ui-view';
+import { getUIView } from '@/homework/lib/ui-view';
+import TicTacToe from './homework/pages/tic-tac-toe';
 
-const getViewComponent = (uiView: UIView) => {
+const getViewComponent = (uiView: string) => {
   let viewElement: React.ReactElement | null = null;
   switch (uiView) {
     case 'signin': {
@@ -21,12 +22,16 @@ const getViewComponent = (uiView: UIView) => {
       viewElement = <StateManagement />;
       break;
     }
+    case 'tic-tac-toe': {
+      viewElement = <TicTacToe />;
+      break;
+    }
   }
   return viewElement;
 };
 
 function Playground() {
-  const [uiView] = useState<UIView>(getUIView);
+  const [uiView] = useState<string>(getUIView);
 
   const viewElement = getViewComponent(uiView);
 
