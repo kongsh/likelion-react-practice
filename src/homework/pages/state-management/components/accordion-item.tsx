@@ -1,22 +1,37 @@
 import { tm } from '@/utils/tw-merge';
-import { useState } from 'react';
+
+export interface AccordionItemType {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+  open?: boolean;
+}
 
 interface AccordionItemProps {
   title: string;
   children: React.ReactNode;
+  open?: boolean;
+  onUpdate?: () => void;
 }
 
-function AccordionItem({ title, children }: AccordionItemProps) {
-  const [isVisible, setIsvisible] = useState(false);
-
-  const handleToggle = () => setIsvisible((v) => !v);
+function AccordionItem({
+  title,
+  children,
+  open = false,
+  onUpdate,
+}: AccordionItemProps) {
+  const handleToggle = () => {
+    console.log('toggled');
+    onUpdate?.();
+  };
 
   return (
-    <div className={tm('flex flex-col space-y-2', 'mb-8')}>
+    <div className={tm('flex flex-col space-y-2 w-full', 'mb-8')}>
       <button
         type="button"
         className={tm(
-          'text-xl font-medium text-primary-500',
+          'text-xl font-medium text-slate-800',
+          'flex-1',
           'cursor-pointer',
           'hover:text-primary-700'
         )}
@@ -26,17 +41,17 @@ function AccordionItem({ title, children }: AccordionItemProps) {
       </button>
       <div
         className={tm(
-          { hidden: !isVisible },
+          { hidden: !open },
           'text-sm text-slate-800 leading-[1.5]',
           '*:mb-3',
           // [from]
-          'opacity-50 -translate-y-2',
+          'opacity-50 -translate-y-2 h-0',
           // start
-          'starting:opacity-0 starting:-translate-y-2',
+          'starting:opacity-0 starting:-translate-y-2 starting:h-0',
           // 전환
-          'transition-all transition-discrete duration-500',
+          'transition-all transition-discrete duration-700 delay-200',
           // [to]
-          { 'opacity-100 translate-y-0': isVisible }
+          { 'opacity-100 translate-y-0 h-30': open }
         )}
       >
         {children}
