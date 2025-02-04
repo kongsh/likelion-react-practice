@@ -37,28 +37,25 @@ function AccordionList({ title }: AccordionListProps) {
     INITIAL_ACCORDION_ITEMS
   );
 
-  const generateUpdateHandler = (index: number) => () => {
-    const nextItems = items.map((item, i) => {
-      return index !== i ? item : { ...item, open: !item.open };
-    });
-    setItems(nextItems);
+  const generateSubcstiveHandler = (index: number) => {
+    return (nextIsVisible: boolean) => {
+      const nextItems = items.map((item, i) => {
+        return index !== i ? item : { ...item, open: nextIsVisible };
+      });
+      setItems(nextItems);
+    };
   };
-
-  const openedItemCount = items.reduce(
-    (count, item) => count + (item.open ? 1 : 0),
-    0
-  );
 
   return (
     <article className={tm('flex flex-col space-y-2 items-center', 'mt-10')}>
       <h3 className="sr-only">{title}</h3>
-      <AccordionOpendedCount>{openedItemCount}</AccordionOpendedCount>
+      <AccordionOpendedCount />
       {items.map((item, index) => (
         <AccordionItem
           title={item.title}
           key={item.id}
           open={item.open}
-          onUpdate={generateUpdateHandler(index)}
+          onSubscribe={generateSubcstiveHandler(index)}
         >
           {item.children}
         </AccordionItem>

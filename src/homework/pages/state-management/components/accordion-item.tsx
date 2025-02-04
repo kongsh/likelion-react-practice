@@ -1,4 +1,5 @@
 import { tm } from '@/utils/tw-merge';
+import { useState } from 'react';
 
 export interface AccordionItemType {
   id: string;
@@ -11,18 +12,21 @@ interface AccordionItemProps {
   title: string;
   children: React.ReactNode;
   open?: boolean;
-  onUpdate?: () => void;
+  onSubscribe?: (nextIsVisible: boolean) => void;
 }
 
 function AccordionItem({
   title,
   children,
   open = false,
-  onUpdate,
+  onSubscribe,
 }: AccordionItemProps) {
+  const [isVisible, setIsVisible] = useState(open);
+
   const handleToggle = () => {
-    console.log('toggled');
-    onUpdate?.();
+    const nextIsVisible = !isVisible;
+    setIsVisible(nextIsVisible);
+    onSubscribe?.(nextIsVisible);
   };
 
   return (
