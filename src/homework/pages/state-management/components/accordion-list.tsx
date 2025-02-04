@@ -1,3 +1,4 @@
+import { tm } from '@/utils/tw-merge';
 import AccordionItem from './accordion-item';
 import { AccordionOpendedCount } from './accordion-opened-count';
 
@@ -7,7 +8,7 @@ interface AccordionListProps {
 
 function AccordionList({ title }: AccordionListProps) {
   return (
-    <article>
+    <article className={tm('flex flex-col space-y-2 items-center', 'mt-10')}>
       <h3 className="sr-only">{title}</h3>
       <AccordionOpendedCount />
       <AccordionItem title="넷플릭스는 무엇인가요?">
