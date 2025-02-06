@@ -9,6 +9,10 @@ export const enum PLAYER {
 
 export type Cells = (PLAYER | null)[];
 
+export const getNextPlayer = (order: number) => {
+  return order % 2 === 0 ? PLAYER.ONE : PLAYER.TWO;
+};
+
 const WIN_CONDITIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -40,4 +44,24 @@ export const getWinner = (cells: Cells): Winner => {
   }
 
   return winner as Winner;
+};
+
+export const getStatusMessage = (
+  nextPlayer: PLAYER,
+  winner: Winner,
+  cells: Cells
+) => {
+  let statusMessage = `다음 플레이어 ${nextPlayer}`;
+
+  if (winner) {
+    statusMessage = `위너! ${winner.player}`;
+  }
+
+  const isDraw = cells.every(Boolean) && !winner;
+
+  if (isDraw) {
+    statusMessage = '게임이 비겼습니다.';
+  }
+
+  return statusMessage;
 };
