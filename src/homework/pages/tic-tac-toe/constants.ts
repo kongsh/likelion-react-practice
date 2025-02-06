@@ -1,13 +1,13 @@
 // 게임 상수
 
-export const INITIAL_CELLS = Array(9).fill(null);
-
 export const enum PLAYER {
   ONE = '😀',
   TWO = '😈',
 }
 
 export type Cells = (PLAYER | null)[];
+
+export const INITIAL_CELLS = Array(9).fill(null);
 
 export const getNextPlayer = (order: number) => {
   return order % 2 === 0 ? PLAYER.ONE : PLAYER.TWO;
@@ -21,7 +21,7 @@ const WIN_CONDITIONS = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 5, 8],
+  [2, 4, 6],
 ];
 
 export type Winner = {
