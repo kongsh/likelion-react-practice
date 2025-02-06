@@ -21,7 +21,7 @@ function Cell({ children, className = '', onPlay, ...restProps }: CellProps) {
         'size-16 border rounded-md',
         'border-black/50',
         'text-2xl font-semibold',
-        { 'cursor-not-allowed': hasChildren },
+        { 'cursor-not-allowed bg-black/10': hasChildren },
         { 'hover:border-black hover:bg-slate-200/60': !hasChildren },
         className
       )}
