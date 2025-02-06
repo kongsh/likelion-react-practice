@@ -1,5 +1,9 @@
-function Status() {
-  return <div>게임 상태 메시지 표시</div>;
+interface StatusProps {
+  message: string;
+}
+
+function Status({ message }: StatusProps) {
+  return <div>{message}</div>;
 }
 
 export default Status;
