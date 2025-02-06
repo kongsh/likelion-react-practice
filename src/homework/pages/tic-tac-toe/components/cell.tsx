@@ -5,7 +5,11 @@ type CellProps = Omit<React.ComponentProps<'button'>, 'onClick'> & {
 };
 
 function Cell({ children, className = '', onPlay, ...restProps }: CellProps) {
+  const hasChildren = !!children;
+
   const handlePlay = () => {
+    if (hasChildren) return;
+
     onPlay();
   };
 
@@ -17,10 +21,12 @@ function Cell({ children, className = '', onPlay, ...restProps }: CellProps) {
         'size-16 border rounded-md',
         'border-black/50',
         'text-2xl font-semibold',
-        'hover:border-black hover:bg-slate-200/60',
+        { 'cursor-not-allowed': hasChildren },
+        { 'hover:border-black hover:bg-slate-200/60': !hasChildren },
         className
       )}
       onClick={handlePlay}
+      aria-disabled={hasChildren}
       {...restProps}
     >
       {children}
