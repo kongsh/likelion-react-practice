@@ -1,7 +1,8 @@
-import { tm } from '@/utils/tw-merge';
 import { Component, ErrorInfo } from 'react';
+import ErrorFallbackUI from './fallback-ui';
 
 interface Props {
+  FallbackComponent?: typeof ErrorFallbackUI;
   children: React.ReactNode;
 }
 
@@ -17,13 +18,7 @@ class ErrorBoundary extends Component<Props, State> {
     errorInfo: null,
     hasError: false,
   };
-
-  // static getDerivedStateFromError(error: Error) {
-  //   return {
-  //     hasError: true,
-  //     error,
-  //   };
-  // }
+  static FallbackUI: Props['FallbackComponent'];
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     this.setState({
@@ -36,27 +31,12 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       const { error, errorInfo } = this.state;
+      const { FallbackComponent } = this.props;
 
-      return (
-        <div
-          role="alert"
-          lang="en"
-          className={tm(
-            'overflow-x-scroll',
-            'flex flex-col gap-2',
-            'border-4 border-red-600',
-            ' text-red-600',
-            'p-5'
-          )}
-        >
-          <h2 className={tm('text-xl font-semibold')}>
-            {error?.name} 오류 발생
-          </h2>
-          <p className={tm('text-red-700 font-normal')}>{error?.message}</p>
-          <pre className="-ml-8 text-xs leading-[2]">
-            {errorInfo?.componentStack}
-          </pre>
-        </div>
+      return FallbackComponent ? (
+        <FallbackComponent error={error} errorInfo={errorInfo} />
+      ) : (
+        <ErrorBoundary.FallbackUI error={error} errorInfo={errorInfo} />
       );
     }
     return this.props.children;

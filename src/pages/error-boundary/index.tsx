@@ -1,6 +1,6 @@
 import { tm } from '@/utils/tw-merge';
 import Wrapper from './wrapper';
-import ErrorBoundary from '@/components/error-boundary';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 
 function ErrorBoundaryDemo() {
   return (
@@ -13,7 +13,7 @@ function ErrorBoundaryDemo() {
       </p>
 
       {/* 오류 발생 가능성이 있는 컴포넌트 집합 */}
-      <ErrorBoundary>
+      <ErrorBoundary FallbackComponent={Fallback}>
         <Wrapper />
       </ErrorBoundary>
     </section>
@@ -21,3 +21,21 @@ function ErrorBoundaryDemo() {
 }
 
 export default ErrorBoundaryDemo;
+
+function Fallback({ error, resetErrorBoundary }: FallbackProps) {
+  return (
+    <div role="alert">
+      <p>오류가 발생했습니다. 😥</p>
+      <pre className={tm('my-3 p-3 border-2 border-red-700 text-red-600')}>
+        {(error as Error).message}
+      </pre>
+      <button
+        type="button"
+        className="bg-indigo-600 text-indigo-100 p-2 cursor-pointer"
+        onClick={resetErrorBoundary}
+      >
+        오류 경계 초기화
+      </button>
+    </div>
+  );
+}
