@@ -5,7 +5,9 @@ import HomeworkSignInForm from '@/homework/pages/sign-in';
 import HomeworkSignUpForm from '@/homework/pages/sign-up';
 import StateManagement from '@/homework/pages/state-management';
 import { getUIView } from '@/homework/lib/ui-view';
-import TicTacToe from './homework/pages/tic-tac-toe';
+import TicTacToe from '@/homework/pages/tic-tac-toe';
+import ErrorBoundaryDemo from '@/homework/pages/error-boundary';
+import LifeCycleDemo from '@/homework/pages/lifecycle';
 
 const getViewComponent = (uiView: string) => {
   let viewElement: React.ReactElement | null = null;
@@ -24,6 +26,14 @@ const getViewComponent = (uiView: string) => {
     }
     case 'tic-tac-toe': {
       viewElement = <TicTacToe />;
+      break;
+    }
+    case 'error-boundary': {
+      viewElement = <ErrorBoundaryDemo />;
+      break;
+    }
+    case 'life-cycle': {
+      viewElement = <LifeCycleDemo />;
       break;
     }
   }

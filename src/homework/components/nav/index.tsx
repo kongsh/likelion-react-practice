@@ -18,6 +18,16 @@ const navList = [
     content: '틱택토',
     href: 'tic-tac-toe',
   },
+  {
+    id: 'item-5',
+    content: '오류 경계',
+    href: 'error-boundary',
+  },
+  {
+    id: 'item-6',
+    content: '라이프 사이클',
+    href: 'life-cycle',
+  },
 ];
 
 function Nav() {
