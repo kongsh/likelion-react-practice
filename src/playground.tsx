@@ -1,57 +1,20 @@
 import { useState } from 'react';
-
-import Nav from '@/homework/components/nav';
-import HomeworkSignInForm from '@/homework/pages/sign-in';
-import HomeworkSignUpForm from '@/homework/pages/sign-up';
-import StateManagement from '@/homework/pages/state-management';
-import { getUIView } from '@/homework/lib/ui-view';
-import TicTacToe from '@/homework/pages/tic-tac-toe';
-import ErrorBoundaryDemo from '@/homework/pages/error-boundary';
-import LifeCycleDemo from '@/homework/pages/lifecycle';
-
-const getViewComponent = (uiView: string) => {
-  let viewElement: React.ReactElement | null = null;
-  switch (uiView) {
-    case 'signin': {
-      viewElement = <HomeworkSignInForm />;
-      break;
-    }
-    case 'signup': {
-      viewElement = <HomeworkSignUpForm />;
-      break;
-    }
-    case 'state-management': {
-      viewElement = <StateManagement />;
-      break;
-    }
-    case 'tic-tac-toe': {
-      viewElement = <TicTacToe />;
-      break;
-    }
-    case 'error-boundary': {
-      viewElement = <ErrorBoundaryDemo />;
-      break;
-    }
-    case 'life-cycle': {
-      viewElement = <LifeCycleDemo />;
-      break;
-    }
-  }
-  return viewElement;
-};
+import { getView } from '@/router/manage-view';
+import ReactPingIcon from '@/components/react-ping-icon';
+import Nav from '@/components/nav';
+import Router from '@/router';
 
 function Playground() {
-  const [uiView] = useState<string>(getUIView);
-
-  const viewElement = getViewComponent(uiView);
+  const [route, setRoute] = useState(getView);
 
   return (
-    <div className="Playground bg-euid-gray-200 wrapper">
-      <h1>플레이그라운드</h1>
-      <Nav />
-
-      {viewElement}
-    </div>
+    <section className="Playground bg-euid-gray-200 wrapper">
+      <h1 lang="en" className="flex items-center gap-2 font-normal text-react">
+        <ReactPingIcon size={24} /> Playground
+      </h1>
+      <Nav onChangeRoute={setRoute} />
+      <Router route={route} />
+    </section>
   );
 }
 
