@@ -4,10 +4,13 @@ import { useState } from 'react';
 import colorMoodList from './data/color-mood-list';
 import { ColorMoodItem, ColorMoodList } from './types';
 import { tm } from '@/utils/tw-merge';
+import { getQueryParam } from './utils/search-params';
 
 function SearchListPage() {
   const [list, setList] = useState<ColorMoodList>(colorMoodList);
-  const [query, setQuery] = useState('');
+
+  // 지연된 초기화
+  const [query, setQuery] = useState(() => getQueryParam() ?? '');
 
   const handleUpdateList = (item: ColorMoodItem, isFavorited: boolean) => {
     const nextList = list.map((it) =>
