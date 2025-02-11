@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { tm } from '@/utils/tw-merge';
 import { ColorMoodItem } from '../types';
 import generateGradient from '../utils/generate-gradient';
@@ -6,18 +5,19 @@ import { Heart, HeartSolid } from '@mynaui/icons-react';
 
 interface CardProps {
   item: ColorMoodItem;
+  onUpdate: (item: ColorMoodItem, isFavorited: boolean) => void;
 }
 
-function Card({ item }: CardProps) {
-  const [isFavorited, setIsFavorited] = useState(false);
+function Card({ item, onUpdate }: CardProps) {
+  const { isFavorited } = item;
+
   const handleChangeFavorite = () => {
     const nextIsFavorited = !isFavorited;
-    setIsFavorited(nextIsFavorited);
+    onUpdate(item, nextIsFavorited);
   };
 
   const handleLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    console.log(slug);
   };
 
   const iconSize = 48;
