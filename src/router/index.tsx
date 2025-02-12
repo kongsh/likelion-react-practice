@@ -7,11 +7,17 @@ import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
 import SideEffectDemo from '@/pages/side-effect';
 import SearchListPage from '@/pages/search-list';
+import MemoryComponentDataPage from '@/pages/memory-component-data';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'memory-component-data',
+    text: '데이터 메모리',
+    element: <MemoryComponentDataPage />,
+  },
   { path: 'search-list', text: '검색 리스트', element: <SearchListPage /> },
   { path: 'side-effect', text: '이펙트 처리', element: <SideEffectDemo /> },
   { path: 'lifecycles', text: '라이프 사이클', element: <LifecycleDemo /> },
