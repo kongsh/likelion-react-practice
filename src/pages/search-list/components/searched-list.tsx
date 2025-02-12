@@ -9,14 +9,24 @@ interface SearchedListProps {
 }
 
 function SearchedList({ query, list, onUpdate }: SearchedListProps) {
-  const word = query.toLowerCase();
+  const words = query
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => word.toLowerCase().trim());
 
-  const filteredList = list.filter(
-    (item) =>
-      item.title.includes(word) ||
-      item.description.includes(word) ||
-      item.tags.includes(word)
-  );
+  const filteredList = list.filter((item) => {
+    return words.every((word) => {
+      if (
+        item.title.includes(word) ||
+        item.description.includes(word) ||
+        item.tags.includes(word)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  });
 
   const filteredCount = filteredList.length;
   const isEmpty = filteredCount === 0;
