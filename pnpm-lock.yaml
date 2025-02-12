@@ -26,6 +26,9 @@ importers:
       react-error-boundary:
         specifier: 5.0.0
         version: 5.0.0(react@19.0.0)
+      vanilla-tilt:
+        specifier: 1.8.1
+        version: 1.8.1
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
@@ -2793,6 +2796,9 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  vanilla-tilt@1.8.1:
+    resolution: {integrity: sha512-hPB1XUsnh+SIeVSW2beb5RnuFxz4ZNgxjGD78o52F49gS4xaoLeEMh9qrQnJrnEn/vjjBI7IlxrrXmz4tGV0Kw==}
 
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
@@ -5874,6 +5880,8 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  vanilla-tilt@1.8.1: {}
 
   varint@6.0.0: {}
 

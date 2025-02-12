@@ -51,11 +51,15 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
+    const clearId = setTimeout(() => {
       if (searchInputRef.current) {
         searchInputRef.current.focus();
       }
     }, 1000);
+
+    return () => {
+      clearTimeout(clearId);
+    };
   });
 
   return (
