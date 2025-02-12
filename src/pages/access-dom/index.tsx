@@ -1,36 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function AccessDOMPage() {
-  // 컴포넌트 바디(body)
-  // 렌더링 프로세스
-  // 순수성(purity)
-  // 상태 선언, 업데이트
-  // 리액트 자동 화면 변경
+  const abbrRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // DOM 노드 접근/조작
+    if (abbrRef.current) {
+      console.log(1, { 'abbrRef.current': abbrRef.current });
+    }
+  }, []);
 
   const [isParse, setIsParse] = useState(false);
 
-  // 사이드 이펙트 처리
-  // 리액트돔의 노드가 아닌, 실제 DOM 노드에 접근
-  // - 이벤트 핸들러
-  // - 이펙트 함수
-  // - ref 콜백 함수
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // JSX -> React API (JavaScript) 코드 컴파일 -> 브라우저 해석(parsing) -> UI 렌더링 (브라우저 페인팅) => 사용자
+  useEffect(() => {
+    setTimeout(() => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    }, 1000);
+  });
   return (
-    <section
-      ref={(element) => {
-        if (element) {
-          element.style.cssText = `
-          padding: 40px;
-          border: 4px solid black;
-        `;
-        }
-      }}
-    >
+    <section>
       <h2 className="text-2xl text-react font-medium">
         <abbr
           title="Document Object Model"
           className="cursor-help no-underline"
+          ref={abbrRef}
         >
           {isParse ? 'Document Object Model' : 'DOM'}
         </abbr>
@@ -44,6 +41,27 @@ function AccessDOMPage() {
       >
         DOM 용어 풀이
       </button>
+
+      <form className="my-20">
+        <div>
+          <label htmlFor="like-a-book" className="sr-only">
+            선호 도서
+          </label>
+          <input
+            type="search"
+            placeholder="좋아하는 도서는?"
+            id="like-a-book"
+            className="bg-white text-react px-3 py-1.5 rounded-sm"
+            ref={searchInputRef}
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-cyan-700 text-white w-20 py-2 rounded-sm"
+        >
+          저장
+        </button>
+      </form>
     </section>
   );
 }

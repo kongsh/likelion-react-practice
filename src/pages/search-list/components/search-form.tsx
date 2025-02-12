@@ -1,5 +1,5 @@
 import { tm } from '@/utils/tw-merge';
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { deleteQueryParam, setQueryParam } from '../utils/search-params';
 
 // 브라우저에서 쿼리 스트링(문자값) 디코딩하여 가져오는 함수
@@ -48,6 +48,16 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
     setQuery(nextQuery);
   };
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    }, 1000);
+  });
+
   return (
     <>
       <output className="bg-react text-white px-4 py-2 rounded-full text-xs font-mono">
@@ -68,6 +78,7 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
             )}
             value={query}
             onChange={handleQuery}
+            ref={searchInputRef}
           />
           <button
             type="submit"
