@@ -2,7 +2,7 @@ import { tm } from '@/utils/tw-merge';
 import { useEffect, useRef, useState } from 'react';
 
 // 함수 호출 시점의 현재 시간 값 반환
-const getTime = () => Date.now();
+const getDateNow = () => Date.now();
 
 const FPS = 1000 / 60;
 
@@ -29,14 +29,14 @@ const formatTime = (time: number) => {
 type IntervalId = ReturnType<typeof setInterval>;
 
 function StopWatch() {
-  const [startTime, setStartTime] = useState(getTime);
-  const [nowTime, setNowTime] = useState(getTime);
+  const [startTime, setStartTime] = useState(getDateNow);
+  const [nowTime, setNowTime] = useState(getDateNow);
   const [recordTime, setRecordTime] = useState(0);
   const [isStart, setIsStart] = useState(false);
 
   const resetTime = () => {
-    setStartTime(getTime);
-    setNowTime(getTime);
+    setStartTime(getDateNow);
+    setNowTime(getDateNow);
   };
 
   const clearIntervalIdRef = useRef<IntervalId>(undefined);
@@ -45,7 +45,7 @@ function StopWatch() {
     if (isStart) {
       resetTime();
       clearIntervalIdRef.current = setInterval(() => {
-        setNowTime(getTime);
+        setNowTime(getDateNow);
       }, FPS);
     } else {
       clearInterval(clearIntervalIdRef.current);

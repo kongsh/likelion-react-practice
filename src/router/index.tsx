@@ -8,11 +8,17 @@ import NotFound from '@/pages/not-found';
 import SideEffectDemo from '@/pages/side-effect';
 import SearchListPage from '@/pages/search-list';
 import MemoryComponentDataPage from '@/pages/memory-component-data';
+import AccessDOMPage from '@/pages/access-dom';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'accssing-dom',
+    text: 'DOM 접근/조작',
+    element: <AccessDOMPage />,
+  },
   {
     path: 'memory-component-data',
     text: '데이터 메모리',
