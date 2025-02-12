@@ -1,7 +1,3 @@
-import generatedHexId from '../utils/generate-hex-id';
-
-console.log(generatedHexId(12));
-
 const colorMoodList = [
   {
     id: 'f093fbf5576c',

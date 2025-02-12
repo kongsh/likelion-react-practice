@@ -1,29 +1,44 @@
 import SearchForm from './components/search-form';
 import SearchedList from './components/searched-list';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import colorMoodList from './data/color-mood-list';
 import { ColorMoodItem, ColorMoodList } from './types';
 import { tm } from '@/utils/tw-merge';
-import { getQueryParam } from './utils/search-params';
+import { deleteQueryParam, getQueryParam } from './utils/search-params';
+
+const getQueryState = () => getQueryParam() ?? '';
 
 function SearchListPage() {
   const [list, setList] = useState<ColorMoodList>(colorMoodList);
 
-  // 지연된 초기화
-  const [query, setQuery] = useState(() => getQueryParam() ?? '');
-
   const handleUpdateList = (item: ColorMoodItem, isFavorited: boolean) => {
-    const nextList = list.map((it) =>
-      it.id === item.id
-        ? {
-            ...it,
-            isFavorited,
-          }
-        : it
+    setList(
+      list.map((it) =>
+        it.id === item.id
+          ? {
+              ...it,
+              isFavorited,
+            }
+          : it
+      )
     );
-
-    setList(nextList);
   };
+
+  // 지연된 초기화
+  const [query, setQuery] = useState(getQueryState);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setQuery(getQueryState);
+    };
+
+    globalThis.addEventListener('popstate', handlePopState);
+
+    return () => {
+      globalThis.removeEventListener('popstate', handlePopState);
+      deleteQueryParam();
+    };
+  }, []);
 
   return (
     <section className={tm('flex flex-col gap-5 items-center')}>

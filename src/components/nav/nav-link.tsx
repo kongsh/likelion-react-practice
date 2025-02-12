@@ -1,5 +1,6 @@
 import { tm } from '@/utils/tw-merge';
-import { getView, setView } from '@/router/manage-view';
+import { getView, resetActiveFocus, setView } from '@/router/manage-view';
+import { deleteQueryParam } from '@/pages/search-list/utils/search-params';
 
 type WithoutHref = Omit<React.ComponentProps<'a'>, 'href'>;
 type OnChangeRoute = React.Dispatch<React.SetStateAction<string>>;
@@ -28,6 +29,10 @@ function NavLink({
     onChangeRoute(href);
     // Playground 컴포넌트의 상태 업데이트 요청
     setView(href);
+    // 페이지 이동 후, 문서에 초점 이동
+    resetActiveFocus();
+    // 다른 페이지 이동 시, 검색 쿼리 삭제
+    deleteQueryParam();
   };
 
   return (
