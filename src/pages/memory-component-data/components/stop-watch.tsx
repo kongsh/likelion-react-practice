@@ -1,10 +1,32 @@
 import { tm } from '@/utils/tw-merge';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // 함수 호출 시점의 현재 시간 값 반환
 const getTime = () => Date.now();
 
 const FPS = 1000 / 60;
+
+const formatTime = (time: number) => {
+  const milliseconds = parseInt(`${time % 100}`, 10);
+
+  const seconds = parseInt(`${(time / 1000) % 60}`, 10);
+
+  const minutes = parseInt(`${(time / (1000 * 60)) % 60}`, 10);
+
+  const hours = parseInt(`${(time / (1000 * 60 * 60)) % 60}`, 10);
+
+  const [hh, mm, ss, ms] = [hours, minutes, seconds, milliseconds].map(
+    (time) => {
+      return time.toLocaleString('ko-KR', {
+        minimumIntegerDigits: 2,
+      });
+    }
+  );
+
+  return `${hh}:${mm}:${ss}:${ms}`;
+};
+
+type IntervalId = ReturnType<typeof setInterval>;
 
 function StopWatch() {
   const [startTime, setStartTime] = useState(getTime);
@@ -17,19 +39,19 @@ function StopWatch() {
     setNowTime(getTime);
   };
 
-  useEffect(() => {
-    let clearIntervalId: ReturnType<typeof setInterval> | number = 0;
+  const clearIntervalIdRef = useRef<IntervalId>(undefined);
 
+  useEffect(() => {
     if (isStart) {
       resetTime();
-      clearIntervalId = setInterval(() => {
+      clearIntervalIdRef.current = setInterval(() => {
         setNowTime(getTime);
       }, FPS);
     } else {
-      clearInterval(clearIntervalId);
+      clearInterval(clearIntervalIdRef.current);
       setRecordTime((recordTime) => recordTime + nowTime - startTime);
+      resetTime();
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isStart]);
 
@@ -43,10 +65,15 @@ function StopWatch() {
     setIsStart(false);
   };
 
+  const timeInfo = formatTime(recordTime + nowTime - startTime);
+
   return (
     <article aria-label="스톱워치" className="flex flex-col gap-2">
-      <time className="px-4 py-2 bg-black text-white text-lg text-center w-46">
-        {recordTime + nowTime - startTime}
+      <time
+        dateTime={timeInfo}
+        className="px-4 py-2 bg-black text-white text-lg text-center w-46 font-mono rounded-full"
+      >
+        {timeInfo}
       </time>
       <div className="flex gap-1">
         <button
