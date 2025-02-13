@@ -16,13 +16,12 @@ function AnimationBox({
         boxElement,
         // 애니메이션 속성
         {
-          x: 240 /* 24px 만큼 이동 */,
+          // x: 240 /* 24px 만큼 이동 */,
           rotate: -360 /* -360deg 만큼 회전 */,
+          scale: 0.8,
         },
         {
           type: 'spring',
-          repeat: Infinity,
-          repeatDelay: 0.2,
         }
       );
     }
