@@ -9,11 +9,17 @@ import SideEffectDemo from '@/pages/side-effect';
 import SearchListPage from '@/pages/search-list';
 import MemoryComponentDataPage from '@/pages/memory-component-data';
 import AccessDOMPage from '@/pages/access-dom';
+import AnimationWithMotionPage from '@/pages/animation-with-motion';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'animation',
+    text: '애니메이션',
+    element: <AnimationWithMotionPage />,
+  },
   {
     path: 'accssing-dom',
     text: 'DOM 접근/조작',
