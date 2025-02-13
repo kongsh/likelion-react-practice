@@ -1,29 +1,25 @@
 import { tm } from '@/utils/tw-merge';
-import { animate } from 'motion';
+import { animate, stagger } from 'motion';
 import { useEffect, useRef } from 'react';
 
 function StaggerAnimationList() {
-  const itemMapRef = useRef<null | Map<number, HTMLLIElement>>(null);
-
-  const getItemMap = () => {
-    if (!itemMapRef.current) {
-      itemMapRef.current = new Map();
-    }
-    return itemMapRef.current;
-  };
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const itemMap = getItemMap();
-    const items = Array.from(itemMap.values());
+    const listElement = listRef.current;
 
-    items.forEach((item, index) => {
-      // keyframes 애니메이션
-      animate(item, { y: [100, 0], opacity: [0, 1] }, { delay: 0.3 * index });
-    });
+    if (listElement) {
+      const listItems = listElement.querySelectorAll('li');
+      animate(
+        listItems,
+        { y: [100, 0], opacity: [0, 1] },
+        { delay: stagger(0.3) }
+      );
+    }
   }, []);
 
   return (
-    <ul className={tm('flex gap-2.5')}>
+    <ul ref={listRef} className={tm('flex gap-2.5')}>
       {Array(4)
         .fill(null)
         .map((_, index) => (
@@ -33,17 +29,6 @@ function StaggerAnimationList() {
               'flex justify-center items-center size-16 rounded-lg',
               'bg-react text-white text-lg font-medium'
             )}
-            ref={(element) => {
-              const itemMap = getItemMap();
-
-              if (element) {
-                itemMap.set(index, element);
-              }
-
-              return () => {
-                itemMap.delete(index);
-              };
-            }}
           >
             {index + 1}
           </li>
