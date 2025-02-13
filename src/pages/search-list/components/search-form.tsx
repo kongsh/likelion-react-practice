@@ -1,5 +1,5 @@
 import { tm } from '@/utils/tw-merge';
-import { useEffect, useId, useRef, useState } from 'react';
+import { Ref, useId, useImperativeHandle, useRef, useState } from 'react';
 import { deleteQueryParam, setQueryParam } from '../utils/search-params';
 
 // 브라우저에서 쿼리 스트링(문자값) 디코딩하여 가져오는 함수
@@ -11,9 +11,10 @@ const convertQueryString = (queryArray: string[]) =>
 interface SearchFormProps {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
+  ref?: Ref<{ focus: () => void; select: () => void; remove: () => void }>;
 }
 
-function SearchForm({ query, setQuery }: SearchFormProps) {
+function SearchForm({ query, setQuery, ref }: SearchFormProps) {
   const [queryString, setQueryString] = useState(getQueryString);
   const searchInputId = useId();
 
@@ -48,17 +49,36 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
     setQuery(nextQuery);
   };
 
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  // const searchInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const clearId = setTimeout(() => {
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => {
+    const inputElement = inputRef.current;
+
+    // 명령형 핸들러 집합
+    const focus = () => {
+      if (inputElement) {
+        inputElement.focus();
       }
-    }, 1000);
+    };
 
-    return () => {
-      clearTimeout(clearId);
+    const select = () => {
+      if (inputElement) {
+        inputElement.select();
+      }
+    };
+
+    const remove = () => {
+      if (inputElement) {
+        inputElement.remove();
+      }
+    };
+
+    return {
+      focus,
+      select,
+      remove,
     };
   });
 
@@ -82,7 +102,7 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
             )}
             value={query}
             onChange={handleQuery}
-            ref={searchInputRef}
+            ref={inputRef}
           />
           <button
             type="submit"
