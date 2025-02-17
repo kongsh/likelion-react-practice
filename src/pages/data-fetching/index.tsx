@@ -7,7 +7,20 @@ interface State {
   data: null;
 }
 
+interface State {
+  loading: boolean;
+  error: null | Error;
+  data: null;
+}
+
+const ENDPOINT = 'https://dummyjson.com/recipes/9';
+
 function DataFetchingPage() {
+  // 화면 업데이트를 위해 필요한 상태 선언
+  // - loading: boolean / status: 'idle' | 'pending' | 'loading' | 'fulfilled' | 'rejected'
+  // - error: null | Error
+  // - data: null | T
+
   const [state, setState] = useState<State>({
     loading: false,
     error: null,
@@ -15,43 +28,48 @@ function DataFetchingPage() {
   });
 
   useEffect(() => {
-    // 상태 업데이트 제외 설정을 위한 변수
-    let ignore = false;
+    const controller = new AbortController();
+
+    // let ignore = false;
 
     setState((s) => ({ ...s, loading: true }));
 
     const fetchData = async () => {
       try {
         await delay(2000);
-        const response = await fetch('https://dummyjson.com/recipes/1');
+        const response = await fetch(ENDPOINT, { signal: controller.signal });
         const jsonData = await response.json();
 
-        // ignore 값이 false일 때만 상태 업데이트
-        if (!ignore) {
-          console.log('fulfilled');
-
-          setState({
-            loading: false,
-            data: jsonData,
-            error: null,
-          });
-        }
+        // if (!ignore) {
+        console.log('fulfilled:: update state');
+        setState({
+          loading: false,
+          data: jsonData,
+          error: null,
+        });
+        // }
       } catch (error) {
-        if (!ignore) {
-          console.log('rejected');
-          setState({
-            loading: false,
-            data: null,
-            error: error as Error,
-          });
+        if ((error as Error).name.includes('Abort')) {
+          return;
         }
+
+        // if (!ignore) {
+        console.log('rejected:: update state');
+        setState({
+          loading: false,
+          data: null,
+          error: error as Error,
+        });
+        // }
       }
     };
 
     fetchData();
 
     return () => {
-      ignore = true;
+      // ignore = true;
+
+      controller.abort();
     };
   }, []);
 
@@ -64,7 +82,7 @@ function DataFetchingPage() {
       <div className="flex flex-col gap-1">
         <h3 className="text-xl font-medium">Loading</h3>
         <p>로딩 상태(loading)</p>
-        <pre className="rounded p-6 overflow-auto bg-react text-[#2cc02c] text-sm">
+        <pre className="rounded p-6 overflow-auto bg-react text-[#22d045] text-sm">
           {state.loading.toString()}
         </pre>
       </div>
