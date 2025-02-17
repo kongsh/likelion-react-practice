@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Recipe, Recipes } from '../types';
 import { addRecipe, getRecipes } from '../lib/recipes';
-import { Spinner } from '@mynaui/icons-react';
+import { PlusSolid, Spinner } from '@mynaui/icons-react';
 import SubmitButton from './SubmitButton';
 import delay from '@/utils/delay';
 
@@ -43,7 +43,7 @@ function RecipeCreate() {
 
   return (
     <article>
-      <h4>레시피 리스트</h4>
+      <h4 className="text-lg font-medium">레시피 리스트</h4>
       <form action={handleAdd} className="flex items-center">
         <input
           type="text"
@@ -51,7 +51,9 @@ function RecipeCreate() {
           aria-label="레시피"
           className="bg-white"
         />
-        <SubmitButton />
+        <SubmitButton label="추가">
+          <PlusSolid size={24} />
+        </SubmitButton>
       </form>
       {!data && (
         <div role="alert" aria-label="로딩 중...">

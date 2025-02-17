@@ -79,3 +79,23 @@ export const addRecipe = async (newRecipe: Partial<Recipe>) => {
 
   return (await response.json()) as Recipe;
 };
+
+// UPDATE
+
+export const editRecipe = async (editRecipe: Partial<Recipe>) => {
+  const { id, ...recipe } = editRecipe;
+
+  const response = await fetch(`${ENDPOINT}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(recipe),
+  });
+
+  if (!response.ok) {
+    throw new Error('레시피 수정 실패!');
+  }
+
+  return (await response.json()) as Recipe;
+};
+
+// DELETE

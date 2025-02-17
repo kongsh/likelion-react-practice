@@ -1,23 +1,32 @@
-import { PlusSolid, Spinner } from '@mynaui/icons-react';
+import { Spinner } from '@mynaui/icons-react';
 import { useFormStatus } from 'react-dom';
 
-function SubmitButton({ size = 24, ...restProps }: { size?: number }) {
+function SubmitButton({
+  size = 24,
+  label = '보내기',
+  children,
+  ...restProps
+}: {
+  size?: number;
+  label?: string;
+  children: React.ReactNode;
+}) {
   const { pending } = useFormStatus();
 
-  const label = pending ? '대기...' : '추가';
+  const buttonLabel = pending ? '대기...' : label;
 
   return (
     <button
       type="submit"
       className="px-2 py-1 bg-react text-white my-1 cursor-pointer"
-      aria-label={label}
-      title={label}
+      aria-label={buttonLabel}
+      title={buttonLabel}
       {...restProps}
     >
       {pending ? (
         <Spinner size={size} className="animate-spin opacity-50" />
       ) : (
-        <PlusSolid size={size} />
+        children
       )}
     </button>
   );
