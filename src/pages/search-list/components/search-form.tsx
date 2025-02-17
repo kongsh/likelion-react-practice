@@ -15,7 +15,7 @@ interface SearchFormProps {
 }
 
 function SearchForm({ query, setQuery, ref }: SearchFormProps) {
-  const [queryString, setQueryString] = useState(getQueryString);
+  const [, setQueryString] = useState(getQueryString);
   const searchInputId = useId();
 
   const words = query

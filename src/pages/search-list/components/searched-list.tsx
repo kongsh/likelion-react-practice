@@ -15,6 +15,8 @@ function SearchedList({ query, list, onUpdate }: SearchedListProps) {
   const filteredCount = filteredList.length;
   const isEmpty = filteredCount === 0;
 
+  console.log(onUpdate);
+
   return (
     <section>
       <h3 className="sr-only">검색된 리스트</h3>

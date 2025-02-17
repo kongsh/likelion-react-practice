@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+// import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '@/styles/main.css';
 import App from '@/app';
@@ -10,8 +10,8 @@ if (root) {
     identifierPrefix: 'euid-',
   });
   reactDOMRoot.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
+    // <StrictMode>
+    // </StrictMode>
+    <App />
   );
 }
