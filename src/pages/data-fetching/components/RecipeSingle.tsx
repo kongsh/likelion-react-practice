@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from '@mynaui/icons-react';
+import { ChevronLeft, ChevronRight, Spinner } from '@mynaui/icons-react';
 import { getRecipeById } from '../lib/recipes';
 import type { Recipe } from '../types';
 
@@ -72,11 +72,9 @@ function RecipeSingle() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h3 className="text-xl font-medium">Loading</h3>
-        <p>로딩 상태(loading)</p>
-        <pre className="rounded p-6 overflow-auto bg-react text-[#22d045] text-sm">
-          {state.loading.toString()}
-        </pre>
+        <div role="alert">
+          {state.loading && <Spinner size={32} className="animate-spin" />}
+        </div>
       </div>
 
       <details className="flex flex-col gap-1">
