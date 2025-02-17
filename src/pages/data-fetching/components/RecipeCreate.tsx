@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Recipe, Recipes } from '../types';
-import { getRecipes } from '../lib/recipes';
+import { addRecipe, getRecipes } from '../lib/recipes';
 import { Spinner } from '@mynaui/icons-react';
 import SubmitButton from './SubmitButton';
+import delay from '@/utils/delay';
 
 function RecipeCreate() {
   const [data, setData] = useState<null | Recipes>(null);
@@ -24,30 +25,19 @@ function RecipeCreate() {
   }, []);
 
   const handleAdd = async (formData: FormData) => {
-    try {
-      const response = await fetch('https://dummyjson.com/recipes/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.get('recipe'),
-        }),
-      });
+    await delay();
 
-      if (!response.ok) {
-        throw new Error('레시피 추가 실패');
-      }
+    const newRecipe = await addRecipe({
+      name: formData.get('name') as string,
+    });
 
-      const addedRecipe = await response.json();
+    if (data) {
+      const nextData: Recipes = {
+        ...data,
+        recipes: [...data.recipes, newRecipe],
+      };
 
-      if (data) {
-        const nextData = {
-          ...data,
-          recipes: [...data.recipes, addedRecipe],
-        };
-        setData(nextData);
-      }
-    } catch (error) {
-      console.log(error);
+      setData(nextData);
     }
   };
 

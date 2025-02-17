@@ -11,6 +11,8 @@ interface Options {
   order?: 'asc' | 'desc';
 }
 
+// READ
+
 export const getRecipes = async ({
   q = '',
   limit = 10,
@@ -58,4 +60,22 @@ export const getRecipeById = async (id: string | number) => {
   return (await fetch(`${ENDPOINT}/${id}`).then((response) =>
     response.json()
   )) as Recipe;
+};
+
+// CREATE
+
+export const addRecipe = async (newRecipe: Partial<Recipe>) => {
+  const response = await fetch(`${ENDPOINT}/add`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: newRecipe,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('레시피 추가 실패');
+  }
+
+  return (await response.json()) as Recipe;
 };
