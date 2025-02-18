@@ -2,13 +2,13 @@ import { tm } from '@/utils/tw-merge';
 import { Spinner } from '@mynaui/icons-react';
 
 interface LoadingProps {
-  size: number;
+  size?: number;
   label?: string;
   className?: string;
 }
 
 function Loading({
-  size,
+  size = 20,
   label = '로딩 중...',
   className,
   ...restProps
