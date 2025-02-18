@@ -1,4 +1,4 @@
-import { MemoItem } from '../types';
+import { MemoItem } from '../lib/supabase-client';
 
 interface MemoListProps {
   items: MemoItem[];
