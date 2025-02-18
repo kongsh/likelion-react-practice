@@ -12,11 +12,17 @@ import AccessDOMPage from '@/pages/access-dom';
 import AnimationWithMotionPage from '@/pages/animation-with-motion';
 import DataFetchingPage from '@/pages/data-fetching';
 import MemoListPage from '@/pages/memo-list';
+import CustomHookPage from '@/pages/custom-hook/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'react-custom-hook',
+    text: '로직 재사용',
+    element: <CustomHookPage />,
+  },
   {
     path: 'supabase-memo-list',
     text: '메모 리스트',
