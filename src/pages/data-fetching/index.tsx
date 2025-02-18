@@ -1,10 +1,21 @@
+import useQuery from '@/hooks/use-query';
 import RecipeCreate from './components/RecipeCreate';
 import RecipeDelete from './components/RecipeDelete';
 import RecipeEdit from './components/RecipeEdit';
 import RecipeList from './components/RecipeList';
 import RecipeSingle from './components/RecipeSingle';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function DataFetchingPage() {
+  useDocumentTitle('데이터 패칭');
+
+  const { data } = useQuery({
+    queryKey: '@pokemon/ditto',
+    queryFn: () => fetch(`https://pokeapi.co/api/v2/pokemon/ditto`),
+  });
+
+  console.log(data);
+
   return (
     <section className="flex flex-col gap-5 my-5">
       <h2 className="text-2xl font-medium">데이터 가져오기</h2>
