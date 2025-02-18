@@ -3,6 +3,7 @@ import { PostgrestError } from '@supabase/supabase-js';
 import { MemoItem } from './lib/supabase-client';
 import { getMemoList } from './lib/api';
 import MemoList from './components/memo-list';
+import Loading from './components/loading';
 
 function MemoListPage() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -12,7 +13,7 @@ function MemoListPage() {
   useEffect(() => {
     let ignore = false;
 
-    getMemoList({ fields: 'title,content,id', page: 1, perPage: 2 })
+    getMemoList()
       .then(({ error, data }) => {
         if (error) {
           throw error;
@@ -35,8 +36,8 @@ function MemoListPage() {
 
   return (
     <article>
-      <h1>Memo List</h1>
-      {loading && <div role="alert">로딩 중...</div>}
+      <h1 className="sr-only">메모 리스트 (with supabase)</h1>
+      {loading && <Loading size={24} />}
       {error && <div role="alert">{error.message}</div>}
       {data && <MemoList items={data} />}
     </article>

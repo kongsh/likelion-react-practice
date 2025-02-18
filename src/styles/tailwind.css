@@ -16,6 +16,8 @@
   --color-react: #010d11;
 
   --text-1_5xl: 22px;
+
+  --breakpoint-xs: 20rem;
 }
 
 @utility wrapper {

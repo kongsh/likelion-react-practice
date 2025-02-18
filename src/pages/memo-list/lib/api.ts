@@ -60,6 +60,7 @@ export const editMemoItem = async (updateMemoItem: MemoItemUpdate) => {
     .eq('id', updateMemoItem.id)
     .select();
 };
+
 export const deleteMemoItem = async (deleteItemId: MemoItem['id']) => {
   return await supabase.from(DATABASE_NAME).delete().eq('id', deleteItemId);
 };
