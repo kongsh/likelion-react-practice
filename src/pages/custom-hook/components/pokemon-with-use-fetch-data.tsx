@@ -3,11 +3,11 @@ import { tm } from '@/utils/tw-merge';
 import type { Pokemon } from '../types';
 import { useFetchData } from '@/hooks/use-fetch-data';
 
-function Pokemon() {
+function PokemonWithUseFetchData() {
   // 포켓몬 개별 정보 가져오기
   // 로딩, 에러, 데이터 상태 선언
   const { loading, error, data } = useFetchData<Pokemon>(
-    'https://pokeapi.co/api/v2/pokemon/9'
+    'https://pokeapi.co/api/v2/pokemon/25'
   );
 
   return (
@@ -27,6 +27,7 @@ function Pokemon() {
         <img
           src={data.sprites.front_default}
           alt={data.name}
+          title={data.name}
           className="size-40"
         />
       )}
@@ -34,4 +35,4 @@ function Pokemon() {
   );
 }
 
-export default Pokemon;
+export default PokemonWithUseFetchData;
