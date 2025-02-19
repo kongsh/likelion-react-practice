@@ -1,23 +1,29 @@
+import MemoryComponentDataPage from '@/pages/memory-component-data';
+import AnimationWithMotionPage from '@/pages/animation-with-motion';
 import StateManagement from '@/pages/state-management';
 import ErrorBoundaryDemo from '@/pages/error-boundary';
+import DataFetchingPage from '@/pages/data-fetching';
+import SuspenseUsePage from '@/pages/suspense-use/page';
+import CustomHookPage from '@/pages/custom-hook/page';
+import SideEffectDemo from '@/pages/side-effect';
+import SearchListPage from '@/pages/search-list';
+import AccessDOMPage from '@/pages/access-dom';
 import LifecycleDemo from '@/pages/lifecycle';
+import MemoListPage from '@/pages/memo-list';
 import TicTacToe from '@/pages/tic-tac-toe';
 import SignInForm from '@/pages/sign-in';
 import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
-import SideEffectDemo from '@/pages/side-effect';
-import SearchListPage from '@/pages/search-list';
-import MemoryComponentDataPage from '@/pages/memory-component-data';
-import AccessDOMPage from '@/pages/access-dom';
-import AnimationWithMotionPage from '@/pages/animation-with-motion';
-import DataFetchingPage from '@/pages/data-fetching';
-import MemoListPage from '@/pages/memo-list';
-import CustomHookPage from '@/pages/custom-hook/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'streaming',
+    text: '스트리밍',
+    element: <SuspenseUsePage />,
+  },
   {
     path: 'react-custom-hook',
     text: '로직 재사용',
@@ -25,21 +31,21 @@ export const navList = [
   },
   {
     path: 'supabase-memo-list',
-    text: '메모 리스트',
+    text: '메모 리스트 (with Supabase)',
     element: <MemoListPage />,
   },
   {
     path: 'data-fetching',
-    text: '데이터/쿼리 뮤테이션',
+    text: '데이터 쿼리/뮤테이션',
     element: <DataFetchingPage />,
   },
   {
     path: 'animation',
-    text: '애니메이션',
+    text: '모션 애니메이션',
     element: <AnimationWithMotionPage />,
   },
   {
-    path: 'accssing-dom',
+    path: 'accessing-dom',
     text: 'DOM 접근/조작',
     element: <AccessDOMPage />,
   },
@@ -50,8 +56,12 @@ export const navList = [
   },
   { path: 'search-list', text: '검색 리스트', element: <SearchListPage /> },
   { path: 'side-effect', text: '이펙트 처리', element: <SideEffectDemo /> },
+  {
+    path: 'error-boundary',
+    text: '에러 바운더리',
+    element: <ErrorBoundaryDemo />,
+  },
   { path: 'lifecycles', text: '라이프 사이클', element: <LifecycleDemo /> },
-  { path: 'error-boundary', text: '오류 경계', element: <ErrorBoundaryDemo /> },
   { path: 'tic-tac-toe', text: '틱택토', element: <TicTacToe /> },
   {
     path: 'state-management',
