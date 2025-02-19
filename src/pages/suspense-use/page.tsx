@@ -2,6 +2,8 @@ import Title from '@/components/title';
 import Pokemon from './components/pokemon';
 import { useState, Suspense } from 'react';
 import PokemonSpinner from './components/pokemon-spinner';
+import { ErrorBoundary } from 'react-error-boundary';
+import PokemonError from './components/pokemon-error';
 
 const POKEMON_ITEMS = {
   min: 1,
@@ -53,9 +55,11 @@ function SuspenseUsePage() {
           </button>
           <output className="px-4 font-extrabold text-3xl">{pokemonId}</output>
         </div>
-        <Suspense fallback={<PokemonSpinner />}>
-          <Pokemon />
-        </Suspense>
+        <ErrorBoundary fallback={<PokemonError />}>
+          <Suspense fallback={<PokemonSpinner />}>
+            <Pokemon id={pokemonId} />
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </>
   );
