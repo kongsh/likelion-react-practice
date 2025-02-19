@@ -2,6 +2,7 @@ import Loading from '@/pages/memo-list/components/loading';
 import { tm } from '@/utils/tw-merge';
 import type { Pokemon } from '../types';
 import useQuery from '@/hooks/use-query';
+import useInView from '@/hooks/use-in-view';
 
 const pikachuQueryOptions = {
   queryKey: '@pokemon/pikachu',
@@ -18,6 +19,9 @@ function PokemonWithUseQuery() {
   // 로딩, 에러, 데이터 상태 선언
   const pikachu = useQuery<Pokemon>(pikachuQueryOptions);
   const raichu = useQuery<Pokemon>(raichuQueryOptions);
+
+  const [figureRef, isInView] = useInView<HTMLImageElement>({ once: true });
+  console.log(isInView);
 
   return (
     <>
@@ -45,6 +49,7 @@ function PokemonWithUseQuery() {
         )}
       </figure>
       <figure
+        ref={figureRef}
         className={tm(
           'flex gap-5 justify-center',
           'border-4 border-black/10',
