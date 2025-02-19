@@ -6,25 +6,28 @@ import MotionComponent from './components/declarative-animation';
 
 function AnimationWithMotionPage() {
   return (
-    <section className="flex flex-col gap-5 items-start">
-      <h2 className="text-2xl font-medium">
-        애니메이션 - Motion 라이브러리 활용
-      </h2>
+    <>
+      <title>Motion 라이브러리 활용 | 리액트 플레이그라운드</title>
+      <section className="flex flex-col gap-5 items-start">
+        <h2 className="text-2xl font-medium">
+          애니메이션 - Motion 라이브러리 활용
+        </h2>
 
-      <ReplayAnimation>
-        <MotionComponent />
-      </ReplayAnimation>
+        <ReplayAnimation>
+          <MotionComponent />
+        </ReplayAnimation>
 
-      <ReplayAnimation>
-        <AnimationBox>
-          <Box size={32} />
-        </AnimationBox>
-      </ReplayAnimation>
+        <ReplayAnimation>
+          <AnimationBox>
+            <Box size={32} />
+          </AnimationBox>
+        </ReplayAnimation>
 
-      <ReplayAnimation>
-        <StaggerAnimationList />
-      </ReplayAnimation>
-    </section>
+        <ReplayAnimation>
+          <StaggerAnimationList />
+        </ReplayAnimation>
+      </section>
+    </>
   );
 }
 
