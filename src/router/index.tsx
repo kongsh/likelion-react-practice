@@ -15,11 +15,17 @@ import SignInForm from '@/pages/sign-in';
 import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
 import UsingContextPage from '@/pages/using-context/page';
+import TicTacToeWithContext from '@/pages/tic-tac-toe-with-context';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'tic-tac-toe-with-context',
+    text: '틱택토 (with Context)',
+    element: <TicTacToeWithContext />,
+  },
   {
     path: 'context-api',
     text: '컨텍스트',
