@@ -16,11 +16,17 @@ import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
 import UsingContextPage from '@/pages/using-context/page';
 import TicTacToeWithContext from '@/pages/tic-tac-toe-with-context';
+import AuthHeadingsLevel from '@/pages/auto-headings-level/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'auto-headings-level',
+    text: '제목 레벨 자동 구성 (with 컨텍스트)',
+    element: <AuthHeadingsLevel />,
+  },
   {
     path: 'tic-tac-toe-with-context',
     text: '틱택토 (with Context)',

@@ -52,7 +52,10 @@ export default tseslint.config(
       '@typescript-eslint/no-floating-promises': 'off',
       'react-refresh/only-export-components': [
         'warn',
-        { allowConstantExport: true, allowExportNames: ['navList'] },
+        {
+          allowConstantExport: true,
+          allowExportNames: ['navList', 'useLevel'],
+        },
       ],
     },
   }
