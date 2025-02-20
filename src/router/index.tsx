@@ -17,11 +17,17 @@ import NotFound from '@/pages/not-found';
 import UsingContextPage from '@/pages/using-context/page';
 import TicTacToeWithContext from '@/pages/tic-tac-toe-with-context';
 import AuthHeadingsLevel from '@/pages/auto-headings-level/page';
+import UnderstandingContextPage from '@/pages/understanding-context/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'understanding-context',
+    text: '컨텍스트 이해',
+    element: <UnderstandingContextPage />,
+  },
   {
     path: 'auto-headings-level',
     text: '제목 레벨 자동 구성 (with 컨텍스트)',
