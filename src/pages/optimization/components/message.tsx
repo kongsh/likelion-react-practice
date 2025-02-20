@@ -1,9 +1,13 @@
+import { use } from 'react';
+import { ColorContext } from '../page';
+
 interface MessageProps {
   greeting: string;
-  color?: string;
 }
 
-function Message({ greeting, color }: MessageProps) {
+function Message({ greeting }: MessageProps) {
+  const color = use(ColorContext);
+
   return <p style={{ color }}>{greeting}</p>;
 }
 
