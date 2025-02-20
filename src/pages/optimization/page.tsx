@@ -1,21 +1,22 @@
 import Heading from '@/components/heading';
 import Section from '@/components/section';
-import { createContext, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import Counter from './components/counter';
 import Message from './components/message';
 import Title from '@/components/title';
 
 export const ColorContext = createContext('#000');
 
-const counterElement = (
-  <Counter messageElement={<Message greeting="요소 최적화가 필요해요! 😳" />} />
-);
-
 function OptimizationPage() {
   const [color] = useState('#000');
 
   const [stars, setStars] = useState('⭐️');
   const handleAddStar = () => setStars((s) => s + '⭐️');
+
+  const messageElement = useMemo(
+    () => <Message greeting="요소 최적화가 필요해요! 😳" />,
+    []
+  );
 
   return (
     <>
@@ -33,7 +34,9 @@ function OptimizationPage() {
         </div>
 
         <hr className="my-8" />
-        <ColorContext value={color}>{counterElement}</ColorContext>
+        <ColorContext value={color}>
+          <Counter messageElement={messageElement} />
+        </ColorContext>
       </Section>
     </>
   );

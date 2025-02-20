@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 interface CounterProps {
   messageElement?: React.ReactElement;
@@ -22,4 +22,4 @@ function Counter({ messageElement }: CounterProps) {
   );
 }
 
-export default Counter;
+export default memo(Counter);

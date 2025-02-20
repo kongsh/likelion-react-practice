@@ -54,7 +54,7 @@ export default tseslint.config(
         'warn',
         {
           allowConstantExport: true,
-          allowExportNames: ['navList', 'useLevel', 'useTheme'],
+          allowExportNames: ['navList', 'useLevel', 'useTheme', 'ColorContext'],
         },
       ],
     },

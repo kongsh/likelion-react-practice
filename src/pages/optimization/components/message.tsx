@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { memo, use } from 'react';
 import { ColorContext } from '../page';
 
 interface MessageProps {
@@ -11,4 +11,4 @@ function Message({ greeting }: MessageProps) {
   return <p style={{ color }}>{greeting}</p>;
 }
 
-export default Message;
+export default memo(Message);
