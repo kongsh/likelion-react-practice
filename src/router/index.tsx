@@ -18,11 +18,17 @@ import UsingContextPage from '@/pages/using-context/page';
 import TicTacToeWithContext from '@/pages/tic-tac-toe-with-context';
 import AuthHeadingsLevel from '@/pages/auto-headings-level/page';
 import UnderstandingContextPage from '@/pages/understanding-context/page';
+import OptimizationPage from '@/pages/optimization/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'react-optimization',
+    text: '성능 최적화',
+    element: <OptimizationPage />,
+  },
   {
     path: 'understanding-context',
     text: '컨텍스트 이해',
