@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 // 스토리지 데이터 읽기
 const getStorage = <T>(key: string, storage = localStorage) => {
@@ -29,9 +29,15 @@ function usePersist<T>(
     if (changeOnSave) setStorage(key, data);
   }, [key, data, changeOnSave, storage]);
 
-  const saveToStorage = (value: T) => setStorage(key, value, storage);
+  const saveToStorage = useCallback(
+    (value: T) => setStorage(key, value, storage),
+    [key, storage]
+  );
 
-  const removeInStorage = () => removeStorage(key, storage);
+  const removeInStorage = useMemo(
+    () => () => removeStorage(key, storage),
+    [key, storage]
+  );
 
   return {
     data,

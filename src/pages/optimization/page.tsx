@@ -4,11 +4,12 @@ import { createContext, useMemo, useState } from 'react';
 import Counter from './components/counter';
 import Message from './components/message';
 import Title from '@/components/title';
+import ColorContextSetter from './components/color-context-setter';
 
 export const ColorContext = createContext('#000');
 
 function OptimizationPage() {
-  const [color] = useState('#000');
+  const [color, setColor] = useState('#000');
 
   const [stars, setStars] = useState('⭐️');
   const handleAddStar = () => setStars((s) => s + '⭐️');
@@ -32,9 +33,9 @@ function OptimizationPage() {
 
           <output>{stars}</output>
         </div>
-
-        <hr className="my-8" />
         <ColorContext value={color}>
+          <ColorContextSetter setColor={setColor} />
+          <hr className="my-8" />
           <Counter messageElement={messageElement} />
         </ColorContext>
       </Section>
