@@ -1,7 +1,11 @@
+import { useAuthStore } from '@/stores/auth';
 import CounterFunction from './components/counter.function';
 import StopWatch from './components/stop-watch';
 
 function MemoryComponentDataPage() {
+  const isSignin = useAuthStore((s) => s.isSignin);
+  console.log(isSignin);
+
   return (
     <section>
       <h2 className="text-2xl text-slate-800 font-medium mb-4">

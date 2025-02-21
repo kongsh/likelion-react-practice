@@ -20,11 +20,17 @@ import AuthHeadingsLevel from '@/pages/auto-headings-level/page';
 import UnderstandingContextPage from '@/pages/understanding-context/page';
 import OptimizationPage from '@/pages/optimization/page';
 import AppStateManagementPage from '@/pages/app-state-management/page';
+import AuthManagementPage from '@/pages/auth-management/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'auth',
+    text: '사용자 관리',
+    element: <AuthManagementPage />,
+  },
   {
     path: 'app-state-management',
     text: '앱 상태 관리',
