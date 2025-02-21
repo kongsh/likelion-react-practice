@@ -11,15 +11,17 @@ const initialState = {
 export const useCountStore = create(
   combine({ ...initialState }, (set) => {
     return {
-      increment: () =>
-        set(({ count, step, max }) => ({
-          count: count + step > max ? max : count + step,
-        })),
-      decrement: () =>
-        set(({ count, step, min }) => ({
-          count: count - step < min ? min : count - step,
-        })),
-      reset: () => set(initialState),
+      actions: {
+        increment: () =>
+          set(({ count, step, max }) => ({
+            count: count + step > max ? max : count + step,
+          })),
+        decrement: () =>
+          set(({ count, step, min }) => ({
+            count: count - step < min ? min : count - step,
+          })),
+        reset: () => set(initialState),
+      },
     };
   })
 );
