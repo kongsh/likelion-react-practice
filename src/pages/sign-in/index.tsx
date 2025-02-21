@@ -3,6 +3,7 @@ import S from './style.module.scss';
 import { isEmail, isPassword } from '@/lib/validator';
 import ActionButton from '@/components/action-button';
 import FormInput from '@/components/form-input';
+import { Link } from 'react-router';
 
 interface SignInFormData {
   useremail: string;
@@ -16,7 +17,7 @@ interface EventData {
   value: string;
 }
 
-function HomeworkSignInForm() {
+function SignInPage() {
   const [formData, setFormData] = useState<SignInFormData>({
     useremail: '',
     userpassword: '',
@@ -103,8 +104,15 @@ function HomeworkSignInForm() {
         />
         <ActionButton aria-disabled={!isAllInputted}>로그인</ActionButton>
       </form>
+      <p className="text-white text-center mt-10">
+        가입하셨나요?
+        <Link to="/auth/signup" className="text-sky-500">
+          회원가입
+        </Link>
+        하세요!
+      </p>
     </section>
   );
 }
 
-export default HomeworkSignInForm;
+export default SignInPage;
