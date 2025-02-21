@@ -1,14 +1,19 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import Playground from './playground';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { ThemeProvider, ThemeSetters } from './contexts/theme';
 import PrintError from './components/error';
+import Playground from './pages/playground/page';
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
       <ThemeProvider>
         <ThemeSetters />
-        <Playground />
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <Routes>
+            <Route path="/playground" element={<Playground />} />
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </ErrorBoundary>
   );
