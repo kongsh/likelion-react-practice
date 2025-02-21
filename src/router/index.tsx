@@ -19,11 +19,17 @@ import TicTacToeWithContext from '@/pages/tic-tac-toe-with-context';
 import AuthHeadingsLevel from '@/pages/auto-headings-level/page';
 import UnderstandingContextPage from '@/pages/understanding-context/page';
 import OptimizationPage from '@/pages/optimization/page';
+import AppStateManagementPage from '@/pages/app-state-management/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'app-state-management',
+    text: '앱 상태 관리',
+    element: <AppStateManagementPage />,
+  },
   {
     path: 'react-optimization',
     text: '성능 최적화',
