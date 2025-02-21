@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import CountDisplay from './countDisplay';
+import CountDisplay from './count-display';
 import CountControllers from './count-controllers';
 
 function Counter() {

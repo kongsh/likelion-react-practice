@@ -1,32 +1,25 @@
 import { create } from 'zustand';
+import { combine } from 'zustand/middleware';
 
-interface State {
-  count: number;
-  step: number;
-  min: number;
-  max: number;
-}
+const initialState = {
+  count: 1,
+  step: 1,
+  min: 1,
+  max: 100,
+};
 
-interface Actions {
-  increment: () => void;
-  decrement: () => void;
-  update: (value: number) => void;
-  reset: () => void;
-  setStep: (value: number) => void;
-}
-
-type Store = State & Actions;
-
-export const useCountStore = create<Store>((set) => {
-  return {
-    count: 0,
-    step: 1,
-    min: 1,
-    max: 10,
-    increment: () => set((state) => ({ count: state.count + 1 })),
-    decrement: () => set((state) => ({ count: state.count - 1 })),
-    update: (value) => set({ count: value }),
-    setStep: (value) => set({ step: value }),
-    reset: () => set({ count: 0 }),
-  };
-});
+export const useCountStore = create(
+  combine({ ...initialState }, (set) => {
+    return {
+      increment: () =>
+        set(({ count, step, max }) => ({
+          count: count + step > max ? max : count + step,
+        })),
+      decrement: () =>
+        set(({ count, step, min }) => ({
+          count: count - step < min ? min : count - step,
+        })),
+      reset: () => set(initialState),
+    };
+  })
+);

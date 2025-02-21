@@ -1,11 +1,12 @@
+import { useCountStore } from '@/stores/count';
 import { tm } from '@/utils/tw-merge';
 import { Minus, Plus, Redo } from '@mynaui/icons-react';
 import { memo } from 'react';
 
 function CountControllers() {
-  const increment = () => {};
-  const decrement = () => {};
-  const reset = () => {};
+  const increment = useCountStore((s) => s.increment);
+  const decrement = useCountStore((s) => s.decrement);
+  const reset = useCountStore((s) => s.reset);
 
   return (
     <>
